@@ -1,0 +1,5 @@
+1. Only commit projects.json if it is different than current one
+2. Create simple JavaScript UI to display content of the projects.json
+3. Refactor code with main() and add bin/build
+4. Add some simple tests and bin/test
+5. Create presentation and share with IBM team then community
