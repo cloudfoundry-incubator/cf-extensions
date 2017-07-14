@@ -3,11 +3,31 @@ package main
 import (
 	"fmt"
 	"os"
+	"io"
+	"net/http"
+	"context"
+	"io/ioutil"
+	"encoding/json"
 
 	"golang.org/x/oauth2"
 	"github.com/google/go-github/github"
-	"context"
 )
+
+type CFExtensionsInfo struct {
+	Name string `json:"name"`
+	GitUrl string  `json:"git_url"`
+	TrackerUrl string  `json:"tracker_url"`
+	Description string `json:"description"`
+	OwnerCompany string `json:"owner_company"`
+	ContactEmail string `json:"contact_email"`
+	Status string `json:"status"`
+	ProposedDate string `json:"proposed_date"`
+	StatusChangedDate string `json:"status_changed_date"`
+}
+
+type Projects struct {
+	Projects []CFExtensionsInfo `json:"projects"`
+}
 
 func main() {
 	ctx := context.Background()
@@ -16,38 +36,17 @@ func main() {
 
 	client := github.NewClient(tc)
 
-	//listUserRepos("maximilien", client, ctx)
-	listReposByOrg("cloudfoundry-incubator", []string{ "cf-extensions" }, client, ctx)
-	//listReposByOrg("cloudfoundry-incubator", []string{}, client, ctx)
+	listReposByOrg("cloudfoundry-incubator", []string{ "cf-extensions" }, client)
 }
 
-func listUserRepos(user string, client *github.Client, ctx context.Context) {
-	opts :=  &github.RepositoryListOptions{Visibility: "public"}
-	repos, _, err := client.Repositories.List(ctx, user, opts)
-	if err != nil {
-		fmt.Printf("err: %s", err.Error())
-		os.Exit(1)
-	}
-
-	fmt.Printf("Repos for user: %s, total: %d\n", "maximilien", len(repos))
-	for _, r := range repos {
-		fmt.Printf("Repo name:  %s\n", *r.Name)
-		fmt.Printf("Git URL:    %s\n", *r.GitURL)
-		fmt.Printf("Labels URL: %s\n", *r.LabelsURL)
-		fmt.Printf("Tags URL:   %s\n", *r.TagsURL)
-		fmt.Printf("Topics:     %s\n", *r.Topics)
-		fmt.Println("-----------------\n")
-	}
-}
-
-func listReposByOrg(org string, topicsFilter []string, client *github.Client, ctx context.Context) {
+func listReposByOrg(org string, topicsFilter []string, client *github.Client) {
 	orgOpts :=  &github.RepositoryListByOrgOptions{
 		ListOptions: github.ListOptions{PerPage: 30},
 	}
 
 	var allRepos []*github.Repository
 	for {
-		repos, resp, err := client.Repositories.ListByOrg(ctx, org, orgOpts)
+		repos, resp, err := client.Repositories.ListByOrg(context.Background(), org, orgOpts)
 		if err != nil {
 			fmt.Printf("err: %s", err.Error())
 			os.Exit(1)
@@ -56,7 +55,7 @@ func listReposByOrg(org string, topicsFilter []string, client *github.Client, ct
 		var filteredRepos []*github.Repository
 		for _, r := range repos {
 			if repoHasTopics(r, topicsFilter) {
-				filteredRepos = append(allRepos, []*github.Repository{r}...)
+				filteredRepos = append(filteredRepos, []*github.Repository{r}...)
 			}
 		}
 
@@ -68,17 +67,37 @@ func listReposByOrg(org string, topicsFilter []string, client *github.Client, ct
 		orgOpts.Page = resp.NextPage
 	}
 
-	fmt.Printf("Repo s for org: %s, total: %d\n", org, len(allRepos))
-	fmt.Println("-----------------\n")
-	for _, r := range allRepos {
-		fmt.Printf("Repo name: %s, URL: %s\n", *r.Name, *r.GitURL)
-		fmt.Printf("Topics:     %s\n", *r.Topics)
-	}
-	fmt.Println("-----------------\n")
-	fmt.Printf("Total repos: %d\n", len(allRepos))
+	cfExtensionsInfos := fetchCFExtensionsInfos(allRepos, client)
+	printRepos(org, allRepos, cfExtensionsInfos)
 }
 
-func repoHasTopics(repo *github.Repository , topics []string) bool {
+func fetchCFExtensionsInfos(repos []*github.Repository, client *github.Client) []CFExtensionsInfo {
+	var cfExtensionsInfos []CFExtensionsInfo
+	for _, r := range repos {
+		cfExtensionsInfo, err := fetchCFExtensionsInfo(r, client)
+		if err != nil {
+			cfExtensionsInfos = append(cfExtensionsInfos, CFExtensionsInfo{})
+		} else {
+			cfExtensionsInfos = append(cfExtensionsInfos, cfExtensionsInfo)
+		}
+	}
+	return cfExtensionsInfos
+}
+
+func printRepos(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
+	fmt.Printf("Repo s for org: %s, total: %d\n", org, len(repos))
+	fmt.Println("-----------------\n")
+	for i, r := range repos {
+		fmt.Printf("Repo name: %s, URL: %s\n", *r.Name, *r.GitURL)
+		fmt.Printf("Topics:     %s\n", *r.Topics)
+		fmt.Printf(".cf-extensions: %v\n", infos[i])
+		fmt.Println()
+	}
+	fmt.Println("-----------------\n")
+	fmt.Printf("Total repos: %d\n", len(repos))
+}
+
+func repoHasTopics(repo *github.Repository, topics []string) bool {
 	for _, topic := range topics {
 		found := false
 		for _, repoTopic := range *repo.Topics {
@@ -91,4 +110,39 @@ func repoHasTopics(repo *github.Repository , topics []string) bool {
 		}
 	}
 	return true
+}
+
+func fetchCFExtensionsInfo(repo *github.Repository, client *github.Client) (CFExtensionsInfo, error) {
+	fileContents, _, _, err := client.Repositories.GetContents(context.Background(),
+		"cloudfoundry-incubator", *repo.Name, ".cf-extensions", &github.RepositoryContentGetOptions{})
+	if err != nil {
+		return CFExtensionsInfo{}, err
+	}
+
+	response, err := http.Get(*fileContents.DownloadURL)
+	if err != nil {
+		return CFExtensionsInfo{}, err
+	}
+
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
+	defer os.Remove(tmpFile.Name())
+
+	defer response.Body.Close()
+	_, err = io.Copy(tmpFile, response.Body)
+	if err != nil {
+		return CFExtensionsInfo{}, err
+	}
+
+	fileBytes, err := ioutil.ReadFile(tmpFile.Name())
+	if err != nil {
+		return CFExtensionsInfo{}, err
+	}
+
+	cfExtensionsInfo := CFExtensionsInfo{}
+	err = json.Unmarshal(fileBytes, &cfExtensionsInfo)
+	if err != nil {
+		return CFExtensionsInfo{}, err
+	}
+
+	return cfExtensionsInfo, nil
 }
