@@ -26,7 +26,8 @@ type CFExtensionsInfo struct {
 }
 
 type Projects struct {
-	Projects []CFExtensionsInfo `json:"projects"`
+	Org string `json:"org"`
+	CFExtensionInfos []CFExtensionsInfo `json:"projects"`
 }
 
 func main() {
@@ -68,7 +69,16 @@ func listReposByOrg(org string, topicsFilter []string, client *github.Client) {
 	}
 
 	cfExtensionsInfos := fetchCFExtensionsInfos(allRepos, client)
-	printRepos(org, allRepos, cfExtensionsInfos)
+	err := saveAndPush(org, cfExtensionsInfos, client)
+	if err != nil {
+		fmt.Printf("ERROR: saving / pushing file with CF-Extensions infos: %s\n", err.Error())
+	}
+
+	print(org, allRepos, cfExtensionsInfos)
+}
+
+func createDefaultCFExtensionInfo(repo *github.Repository, client *github.Client) CFExtensionsInfo {
+	return CFExtensionsInfo{}
 }
 
 func fetchCFExtensionsInfos(repos []*github.Repository, client *github.Client) []CFExtensionsInfo {
@@ -76,25 +86,13 @@ func fetchCFExtensionsInfos(repos []*github.Repository, client *github.Client) [
 	for _, r := range repos {
 		cfExtensionsInfo, err := fetchCFExtensionsInfo(r, client)
 		if err != nil {
+			cfExtensionsInfo = createDefaultCFExtensionInfo(r, client)
 			cfExtensionsInfos = append(cfExtensionsInfos, CFExtensionsInfo{})
 		} else {
 			cfExtensionsInfos = append(cfExtensionsInfos, cfExtensionsInfo)
 		}
 	}
 	return cfExtensionsInfos
-}
-
-func printRepos(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
-	fmt.Printf("Repo s for org: %s, total: %d\n", org, len(repos))
-	fmt.Println("-----------------\n")
-	for i, r := range repos {
-		fmt.Printf("Repo name: %s, URL: %s\n", *r.Name, *r.GitURL)
-		fmt.Printf("Topics:     %s\n", *r.Topics)
-		fmt.Printf(".cf-extensions: %v\n", infos[i])
-		fmt.Println()
-	}
-	fmt.Println("-----------------\n")
-	fmt.Printf("Total repos: %d\n", len(repos))
 }
 
 func repoHasTopics(repo *github.Repository, topics []string) bool {
@@ -126,6 +124,9 @@ func fetchCFExtensionsInfo(repo *github.Repository, client *github.Client) (CFEx
 
 	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
 	defer os.Remove(tmpFile.Name())
+	if err != nil {
+		return CFExtensionsInfo{}, err
+	}
 
 	defer response.Body.Close()
 	_, err = io.Copy(tmpFile, response.Body)
@@ -145,4 +146,56 @@ func fetchCFExtensionsInfo(repo *github.Repository, client *github.Client) (CFEx
 	}
 
 	return cfExtensionsInfo, nil
+}
+
+func print(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
+	fmt.Printf("Repos for %s, total: %d\n", org, len(repos))
+	fmt.Println("-----------------\n")
+	for i, r := range repos {
+		fmt.Printf("Repo name: %s, URL: %s\n", *r.Name, *r.GitURL)
+		fmt.Printf("Topics:     %s\n", *r.Topics)
+		fmt.Printf(".cf-extensions: %v\n", infos[i])
+		fmt.Println()
+	}
+	fmt.Println("-----------------\n")
+	fmt.Printf("Total repos: %d\n", len(repos))
+}
+
+func saveAndPush(org string, infos []CFExtensionsInfo, client *github.Client) error {
+	projects := Projects{Org: org, CFExtensionInfos: infos}
+
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
+	defer os.Remove(tmpFile.Name())
+	if err != nil {
+		return err
+	}
+
+	contents, err := json.MarshalIndent(projects, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	fileContents, _, _, err := client.Repositories.GetContents(context.Background(),
+		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
+	if err != nil {
+		return err
+	}
+
+	message := "Updating cf-extensions repos info"
+	repositoryContentsOptions := &github.RepositoryContentFileOptions{
+		Message:   &message,
+		Content:   contents,
+		SHA: fileContents.SHA,
+		Committer: &github.CommitAuthor{Name: github.String("maximilien"), Email: github.String("maxim@us.ibm.com")},
+	}
+
+	updateResponse, _, err := client.Repositories.UpdateFile(context.Background(), "cloudfoundry-incubator", "cf-extensions", "projects.json", repositoryContentsOptions)
+	if err != nil {
+		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
+		return err
+	}
+
+	fmt.Printf("Commited projects.json %s\n\n", *updateResponse.Commit.SHA)
+
+	return nil
 }
