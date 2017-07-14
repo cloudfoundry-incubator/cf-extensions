@@ -3,3 +3,6 @@
 3. Refactor code with main() and add bin/build
 4. Add some simple tests and bin/test
 5. Create presentation and share with IBM team then community
+6. Remove hard coded github auth token
+7. Move this code to the cloudfoundry-incubator/cf-extensions
+8. Delete this repo
