@@ -11,6 +11,7 @@ import (
 
 	"golang.org/x/oauth2"
 	"github.com/google/go-github/github"
+	"sort"
 )
 
 type CFExtensionsInfo struct {
@@ -23,6 +24,19 @@ type CFExtensionsInfo struct {
 	Status string `json:"status"`
 	ProposedDate string `json:"proposed_date"`
 	StatusChangedDate string `json:"status_changed_date"`
+}
+
+type CFExtensionsInfos []CFExtensionsInfo
+
+func (infos CFExtensionsInfos) Len() int {
+	return len(infos)
+}
+
+func (infos CFExtensionsInfos) Swap(i, j int) {
+	infos[i], infos[j] = infos[j], infos[i]
+}
+func (infos CFExtensionsInfos) Less(i, j int) bool {
+	return infos[i].Name < infos[j].Name
 }
 
 type Projects struct {
@@ -96,6 +110,7 @@ func listReposByOrg(org string, topicsFilter []string, client *github.Client) {
 	}
 
 	cfExtensionsInfos := fetchCFExtensionsInfos(allRepos, client)
+	sort.Sort(CFExtensionsInfos(cfExtensionsInfos))
 	err := saveAndPush(org, cfExtensionsInfos, client)
 	if err != nil {
 		fmt.Printf("ERROR: saving / pushing file with CF-Extensions infos: %s\n", err.Error())
@@ -185,6 +200,8 @@ func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
 }
 
 func print(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
+	sort.Sort(CFExtensionsInfos(infos))
+
 	fmt.Printf("Repos for %s, total: %d\n", org, len(repos))
 	fmt.Println("-----------------\n")
 	for i, r := range repos {
