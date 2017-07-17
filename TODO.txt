@@ -1,8 +1,17 @@
-1. Only commit projects.json if it is different than current one
-2. Create simple JavaScript UI to display content of the projects.json
+# Working
+
+2. Create simple Markdown UI file to display content of the projects.json
 3. Refactor code with main() and add bin/build
 4. Add some simple tests and bin/test
 5. Create presentation and share with IBM team then community
 6. Remove hard coded github auth token
+7. Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
+8. Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than commit
+9. Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
+10. Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
 7. Move this code to the cloudfoundry-incubator/cf-extensions
 8. Delete this repo
+
+# Done
+
+1. Only commit projects.json if it is different than current one
