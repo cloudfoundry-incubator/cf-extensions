@@ -1,0 +1,29 @@
+# CF-Extensions
+
+**Organization**: [{{.Org}}](https://github.com/{{.Org}}) has {{.CFExtensionInfos | length}} incubating projects
+
+{{- range .CFExtensionInfos }}
+
+## [{{.Name}}](https://github.com/{{.GitUrl}})
+**Status**: {{ .Status }} (changed on {{ .StatusChangedDate | parseAsDate }})
+
+**Owner**: {{ .OwnerCompany }}, {{ .ContactEmail }}
+
+**Proposed Date**: {{ .ProposedDate | parseAsDate }}
+
+### Description
+{{ .Description }}
+
+### Links
+**Git URL**: [{{ .GitUrl }}]({{ .GitUrl }})
+
+{{if .TrackerUrl -}}
+
+**Tracker URL**: [{{ .TrackerUrl }}]({{ .TrackerUrl }})
+
+{{- end}}
+
+---
+{{- end}}
+
+Last updated on {{ currentTime | formatAsDateTime }}.

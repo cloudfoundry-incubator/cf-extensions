@@ -8,6 +8,8 @@ import (
 	"context"
 	"io/ioutil"
 	"encoding/json"
+	"html/template"
+	"time"
 
 	"golang.org/x/oauth2"
 	"github.com/google/go-github/github"
@@ -111,9 +113,15 @@ func listReposByOrg(org string, topicsFilter []string, client *github.Client) {
 
 	cfExtensionsInfos := fetchCFExtensionsInfos(allRepos, client)
 	sort.Sort(CFExtensionsInfos(cfExtensionsInfos))
-	err := saveAndPush(org, cfExtensionsInfos, client)
+	projects := Projects{Org: org, CFExtensionInfos: cfExtensionsInfos}
+	err := saveAndPush(projects, client)
 	if err != nil {
-		fmt.Printf("ERROR: saving / pushing file with CF-Extensions infos: %s\n", err.Error())
+		fmt.Printf("ERROR: saving / pushing projects file: %s\n", err.Error())
+	}
+
+	err = generateMarkdown(projects, client)
+	if err != nil {
+		fmt.Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
 	}
 
 	print(org, allRepos, cfExtensionsInfos)
@@ -202,6 +210,7 @@ func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
 func print(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
 	sort.Sort(CFExtensionsInfos(infos))
 
+	fmt.Println()
 	fmt.Printf("Repos for %s, total: %d\n", org, len(repos))
 	fmt.Println("-----------------\n")
 	for i, r := range repos {
@@ -214,8 +223,111 @@ func print(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
 	fmt.Printf("Total repos: %d\n", len(repos))
 }
 
-func saveAndPush(org string, infos []CFExtensionsInfo, client *github.Client) error {
-	projects := Projects{Org: org, CFExtensionInfos: infos}
+func length(infos []CFExtensionsInfo) int {
+	return len(infos)
+}
+
+func currentTime() time.Time {
+	return time.Now()
+}
+
+func formatAsDate(t time.Time) string {
+	year, month, day := t.Date()
+
+	return fmt.Sprintf("%d/%d/%d", month, day, year)
+}
+
+func formatAsDateTime(t time.Time) string {
+	year, month, day := t.Date()
+
+	return fmt.Sprintf("%d/%d/%d @ %d:%d:%d", month, day, year, t.Hour(), t.Minute(), t.Second())
+}
+
+func parseAsDate(timeString string) string {
+	stringTime, err := time.Parse("2017-02-03T12:00:00Z07:00", timeString)
+	if err != nil {
+		fmt.Printf("ERROR parsing time: %s, message: %s\n", timeString, err.Error())
+		return formatAsDate(time.Now())
+	}
+
+	return formatAsDate(stringTime)
+}
+
+
+func generateMarkdown(projects Projects, client *github.Client) error {
+	fileContents, _, _, err := client.Repositories.GetContents(context.Background(),
+		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
+	if err != nil {
+		return err
+	}
+
+	if !hasProjectsChanged(projects, fileContents) {
+		fmt.Printf("Commited projects.md has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		return nil
+	}
+
+	funcMap := template.FuncMap{
+		"length": length,
+		"currentTime": currentTime,
+		"formatAsDate": formatAsDate,
+		"formatAsDateTime": formatAsDateTime,
+		"parseAsDate": parseAsDate,
+	}
+
+	t := template.Must(template.New("cf-extensions.md.tmpl").Funcs(funcMap).ParseFiles("cf-extensions.md.tmpl"))
+
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
+	defer os.Remove(tmpFile.Name())
+	if err != nil {
+		return err
+	}
+
+	err = t.Execute(tmpFile, projects)
+	if err != nil {
+		return err
+	}
+
+	projectsMdFileContents, _, _, err := client.Repositories.GetContents(context.Background(),
+		"cloudfoundry-incubator", "cf-extensions", "projects.md", &github.RepositoryContentGetOptions{})
+	if err != nil {
+		return err
+	}
+
+	contents, err := ioutil.ReadFile(tmpFile.Name())
+	if err != nil {
+		return err
+	}
+
+	message := "Updating cf-extensions projects.md file"
+	repositoryContentsOptions := &github.RepositoryContentFileOptions{
+		Message:   &message,
+		Content:   contents,
+		SHA: projectsMdFileContents.SHA,
+		Committer: &github.CommitAuthor{Name: github.String("maximilien"), Email: github.String("maxim@us.ibm.com")},
+	}
+
+	updateResponse, _, err := client.Repositories.UpdateFile(context.Background(), "cloudfoundry-incubator", "cf-extensions", "projects.md", repositoryContentsOptions)
+	if err != nil {
+		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
+		return err
+	}
+
+	fmt.Printf("Commited projects.md %s\n", *updateResponse.Commit.SHA)
+
+	return nil
+}
+
+func saveAndPush(projects Projects, client *github.Client) error {
+	fileContents, _, _, err := client.Repositories.GetContents(context.Background(),
+		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
+	if err != nil {
+		return err
+	}
+
+	if !hasProjectsChanged(projects, fileContents) {
+		fmt.Printf("Commited projects.json has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		return nil
+	}
 
 	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
 	defer os.Remove(tmpFile.Name())
@@ -226,17 +338,6 @@ func saveAndPush(org string, infos []CFExtensionsInfo, client *github.Client) er
 	contents, err := json.MarshalIndent(projects, "", "  ")
 	if err != nil {
 		return err
-	}
-
-	fileContents, _, _, err := client.Repositories.GetContents(context.Background(),
-		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
-	if err != nil {
-		return err
-	}
-
-	if !hasProjectsChanged(projects, fileContents) {
-		fmt.Printf("Commited projects.json has not changed, last commit SHA: %s\n", *fileContents.SHA)
-		return nil
 	}
 
 	message := "Updating cf-extensions repos info"
@@ -253,7 +354,7 @@ func saveAndPush(org string, infos []CFExtensionsInfo, client *github.Client) er
 		return err
 	}
 
-	fmt.Printf("Commited projects.json %s\n\n", *updateResponse.Commit.SHA)
+	fmt.Printf("Commited projects.json %s\n", *updateResponse.Commit.SHA)
 
 	return nil
 }
