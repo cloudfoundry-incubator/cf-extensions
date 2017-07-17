@@ -30,6 +30,33 @@ type Projects struct {
 	CFExtensionInfos []CFExtensionsInfo `json:"projects"`
 }
 
+func (p Projects) Equal(otherProjects Projects) bool {
+	if p.Org != otherProjects.Org {
+		return false
+	}
+
+	for _, info := range p.CFExtensionInfos {
+		found := false
+
+		for _, otherInfo := range otherProjects.CFExtensionInfos {
+			if otherInfo.Name == info.Name {
+				found = true
+				if info == otherInfo {
+					break
+				} else {
+					return false
+				}
+			}
+		}
+
+		if !found {
+			return false
+		}
+	}
+
+	return true
+}
+
 func main() {
 	ctx := context.Background()
 	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: "30bb3196bd7d24eeba37b0e6def3e556b6ed49f1"})
@@ -117,24 +144,7 @@ func fetchCFExtensionsInfo(repo *github.Repository, client *github.Client) (CFEx
 		return CFExtensionsInfo{}, err
 	}
 
-	response, err := http.Get(*fileContents.DownloadURL)
-	if err != nil {
-		return CFExtensionsInfo{}, err
-	}
-
-	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
-	defer os.Remove(tmpFile.Name())
-	if err != nil {
-		return CFExtensionsInfo{}, err
-	}
-
-	defer response.Body.Close()
-	_, err = io.Copy(tmpFile, response.Body)
-	if err != nil {
-		return CFExtensionsInfo{}, err
-	}
-
-	fileBytes, err := ioutil.ReadFile(tmpFile.Name())
+	fileBytes, err := extractFileBytes(fileContents)
 	if err != nil {
 		return CFExtensionsInfo{}, err
 	}
@@ -146,6 +156,32 @@ func fetchCFExtensionsInfo(repo *github.Repository, client *github.Client) (CFEx
 	}
 
 	return cfExtensionsInfo, nil
+}
+
+func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
+	response, err := http.Get(*fileContent.DownloadURL)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
+	defer os.Remove(tmpFile.Name())
+	if err != nil {
+		return []byte{}, err
+	}
+
+	defer response.Body.Close()
+	_, err = io.Copy(tmpFile, response.Body)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	fileBytes, err := ioutil.ReadFile(tmpFile.Name())
+	if err != nil {
+		return []byte{}, err
+	}
+
+	return fileBytes, nil
 }
 
 func print(org string, repos []*github.Repository, infos []CFExtensionsInfo) {
@@ -181,6 +217,11 @@ func saveAndPush(org string, infos []CFExtensionsInfo, client *github.Client) er
 		return err
 	}
 
+	if !hasProjectsChanged(projects, fileContents) {
+		fmt.Printf("Commited projects.json has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		return nil
+	}
+
 	message := "Updating cf-extensions repos info"
 	repositoryContentsOptions := &github.RepositoryContentFileOptions{
 		Message:   &message,
@@ -198,4 +239,19 @@ func saveAndPush(org string, infos []CFExtensionsInfo, client *github.Client) er
 	fmt.Printf("Commited projects.json %s\n\n", *updateResponse.Commit.SHA)
 
 	return nil
+}
+
+func hasProjectsChanged(projects Projects, fileContent *github.RepositoryContent) bool {
+	fileBytes, err := extractFileBytes(fileContent)
+	if err != nil {
+		return true
+	}
+
+	downloadedProjects := Projects{}
+	err = json.Unmarshal(fileBytes, &downloadedProjects)
+	if err != nil {
+		return true
+	}
+
+	return projects.Equal(downloadedProjects) != true
 }
