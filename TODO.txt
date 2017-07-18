@@ -1,8 +1,6 @@
 # Working
 
-3. Refactor code with main() and add bin/build
 4. Add some simple tests and bin/test
-5. Create presentation and share with IBM team then community
 6. Remove hard coded github auth token
 7. Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
 8. Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than commit
@@ -16,3 +14,5 @@
 1. Only commit projects.json if it is different than current one
 2. Create simple Markdown UI file to display content of the projects.json
 2.1 When a cf-extensions repo is deleted then regenerate the projects.json and projects.md files
+3. Refactor code with main() and add bin/build
+5. Create presentation and share with IBM team then community
