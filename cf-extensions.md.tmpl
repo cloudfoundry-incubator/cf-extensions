@@ -1,11 +1,11 @@
 # CF-Extensions
 
-**Organization**: [{{.Org}}](https://github.com/{{.Org}}) has {{.CFExtensionInfos | length}} incubating projects
+**Organization**: [{{.Org}}](https://github.com/{{.Org}}) has {{.Infos | length}} incubating projects
 
-{{- range .CFExtensionInfos }}
+{{- range .Infos }}
 
 ## [{{.Name}}](https://github.com/{{.GitUrl}})
-**Status**: {{ .Status }} (changed on {{ .StatusChangedDate | parseAsDate }})
+**Status**: {{ .Status }} (changed on {{ .ChangedDate | parseAsDate }})
 
 **Owner**: {{ .OwnerCompany }}, {{ .ContactEmail }}
 
