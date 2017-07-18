@@ -51,6 +51,10 @@ func (p Projects) Equal(otherProjects Projects) bool {
 		return false
 	}
 
+	if len(p.CFExtensionInfos) != len(otherProjects.CFExtensionInfos) {
+		return false
+	}
+
 	for _, info := range p.CFExtensionInfos {
 		found := false
 

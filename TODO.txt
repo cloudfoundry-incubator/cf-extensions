@@ -15,3 +15,4 @@
 
 1. Only commit projects.json if it is different than current one
 2. Create simple Markdown UI file to display content of the projects.json
+2.1 When a cf-extensions repo is deleted then regenerate the projects.json and projects.md files
