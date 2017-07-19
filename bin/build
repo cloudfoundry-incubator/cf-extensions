@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-echo -e "\n Formatting packages..."
-go fmt ./...
+bin=$(dirname $0)
+
+echo -e "\nFormatting packages..."
+$bin/env go fmt ./...
 
 echo -e "\nGenerating Binary..."
-go build -o $(dirname $0)/../out/cf-extensions *.go
+$bin/env go build -o $(dirname $0)/../out/cf-extensions *.go
 
 echo -e "out/cf-extensions"

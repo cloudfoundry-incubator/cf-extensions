@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
+bin=$(dirname $0)
+
 $(dirname $0)/build
-go run -race $(dirname $0)/../main.go "$@"
+$bin/env go run -race $(dirname $0)/../main.go "$@"

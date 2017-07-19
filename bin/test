@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bin=$(dirname $0)
+
 (
   set -e
 
@@ -14,14 +16,17 @@
   trap printStatus EXIT
 
   echo -e "\n Cleaning build artifacts..."
-  go clean
+  $bin/env go clean
 
   echo -e "\n Formatting packages..."
-  go fmt ./...
+  $bin/env go fmt ./...
+
+  echo -e "\n Running unit tests..."
+  $bin/env ginkgo -r $race -keepGoing -trace -skipPackage="integration" $@
 
   echo -e "\n Integration Testing packages:"
-  go test ./integration/... -parallel 4 $@
+  $bin/env go test ./integration/... -parallel 4 $@
 
   echo -e "\n Vetting packages for potential issues..."
-  go tool vet main models bot
+  $bin/env go tool vet main models bot
 )
