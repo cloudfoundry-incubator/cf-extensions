@@ -1,18 +1,20 @@
 # Working
 
-4. Add some simple tests and bin/test
-6. Remove hard coded github auth token
-7. Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
-8. Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than commit
-9. Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
-10. Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
-7. Move this code to the cloudfoundry-incubator/cf-extensions
-8. Delete this repo
++ Remove hard coded github auth token and org
++ Fix issue with parsing Info.*Date fields
++ Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
++ Add integration test
++ Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than commit
++ Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
++ Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
++ Move this code to the cloudfoundry-incubator/cf-extensions
++ Delete this repo
 
 # Done
 
-1. Only commit projects.json if it is different than current one
-2. Create simple Markdown UI file to display content of the projects.json
-2.1 When a cf-extensions repo is deleted then regenerate the projects.json and projects.md files
-3. Refactor code with main() and add bin/build
-5. Create presentation and share with IBM team then community
+- Only commit projects.json if it is different than current one
+- Create simple Markdown UI file to display content of the projects.json
+- When a cf-extensions repo is deleted then regenerate the projects.json and projects.md files
+- Refactor code with main() and add bin/build
+- Add some simple tests and bin/test
+- Create presentation and share with IBM team then community
