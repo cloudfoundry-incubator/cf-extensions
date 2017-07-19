@@ -1,15 +1,15 @@
 # CF-Extensions
 
-**Organization**: [{{.Org}}](https://github.com/{{.Org}}) has {{.Infos | length}} incubating projects
+**Organization**: [{{.Org}}](https://github.com/{{.Org}}) has {{.Infos | Length}} incubating projects
 
 {{- range .Infos }}
 
 ## [{{.Name}}](https://github.com/{{.GitUrl}})
-**Status**: {{ .Status }} (changed on {{ .ChangedDate | parseAsDate }})
+**Status**: {{ .Status }} (changed on {{ .ChangedDate | ParseAsDate }})
 
 **Owner**: {{ .OwnerCompany }}, {{ .ContactEmail }}
 
-**Proposed Date**: {{ .ProposedDate | parseAsDate }}
+**Proposed Date**: {{ .ProposedDate | ParseAsDate }}
 
 ### Description
 {{ .Description }}
@@ -26,4 +26,4 @@
 ---
 {{- end}}
 
-Last updated on {{ currentTime | formatAsDateTime }}.
+Last updated on {{ CurrentTime | FormatAsDateTime }}.
