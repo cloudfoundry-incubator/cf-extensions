@@ -1,4 +1,4 @@
-package main
+package models
 
 type Projects struct {
 	Org   string `json:"org"`

@@ -1,4 +1,4 @@
-package main
+package bot
 
 import (
 	"context"
@@ -8,6 +8,8 @@ import (
 	"encoding/json"
 
 	"github.com/google/go-github/github"
+
+	"github.com/maximilien/cf-extensions/models"
 )
 
 type ExtRepos struct {
@@ -24,7 +26,7 @@ func NewExtRepos(org string, topics []string, client *github.Client) *ExtRepos {
 	}
 }
 
-func (extRepos *ExtRepos) GetInfos() Infos {
+func (extRepos *ExtRepos) GetInfos() models.Infos {
 	orgOpts := &github.RepositoryListByOrgOptions{
 		ListOptions: github.ListOptions{PerPage: 30},
 	}
@@ -70,17 +72,17 @@ func (extRepos *ExtRepos) HasTopics(repo *github.Repository, topics []string) bo
 	return true
 }
 
-func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) Info {
-	return Info{}
+func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
+	return models.Info{}
 }
 
-func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []Info {
-	var infos []Info
+func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
+	var infos []models.Info
 	for _, r := range repos {
 		info, err := extRepos.FetchInfo(r)
 		if err != nil {
 			info = extRepos.DefaultInfo(r)
-			infos = append(infos, Info{})
+			infos = append(infos, models.Info{})
 		} else {
 			infos = append(infos, info)
 		}
@@ -88,25 +90,23 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []Info {
 	return infos
 }
 
-func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (Info, error) {
+func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error) {
 	fileContents, _, _, err := extRepos.Client.Repositories.GetContents(context.Background(),
 		extRepos.Org, *repo.Name, ".cf-extensions", &github.RepositoryContentGetOptions{})
 	if err != nil {
-		return Info{}, err
+		return models.Info{}, err
 	}
 
 	fileBytes, err := extractFileBytes(fileContents)
 	if err != nil {
-		return Info{}, err
+		return models.Info{}, err
 	}
 
-	info := Info{Repo: repo}
+	info := models.Info{Repo: repo}
 	err = json.Unmarshal(fileBytes, &info)
 	if err != nil {
-		return Info{}, err
+		return models.Info{}, err
 	}
 
 	return info, nil
 }
-
-// Private utility functions

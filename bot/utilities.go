@@ -1,14 +1,17 @@
-package main
+package bot
 
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"time"
 
-	"github.com/google/go-github/github"
+	"io/ioutil"
 	"net/http"
+
+	"github.com/google/go-github/github"
+
+	"github.com/maximilien/cf-extensions/models"
 )
 
 func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
@@ -37,7 +40,7 @@ func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
 	return fileBytes, nil
 }
 
-func length(infos []Info) int {
+func length(infos []models.Info) int {
 	return len(infos)
 }
 

@@ -1,17 +1,21 @@
-package main
+package bot
 
 import (
 	"context"
 	"fmt"
 	"os"
+	"path"
 	"sort"
 
 	"encoding/json"
 	"html/template"
 	"io/ioutil"
 
-	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
+
+	"github.com/google/go-github/github"
+
+	"github.com/maximilien/cf-extensions/models"
 )
 
 type App struct {
@@ -33,9 +37,9 @@ func (app *App) Run(org string, topics []string) {
 		[]string{"cf-extensions"},
 		app.Client)
 	infos := extRepos.GetInfos()
-	sort.Sort(Infos(infos))
+	sort.Sort(models.Infos(infos))
 
-	projects := Projects{Org: extRepos.Org, Infos: infos}
+	projects := models.Projects{Org: extRepos.Org, Infos: infos}
 	err := app.PushJsonDb(projects)
 	if err != nil {
 		fmt.Printf("ERROR: saving / pushing projects file: %s\n", err.Error())
@@ -50,7 +54,7 @@ func (app *App) Run(org string, topics []string) {
 
 }
 
-func (app *App) GenerateMarkdown(projects Projects) error {
+func (app *App) GenerateMarkdown(projects models.Projects) error {
 	fileContents, _, _, err := app.Client.Repositories.GetContents(context.Background(),
 		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
 	if err != nil {
@@ -70,7 +74,13 @@ func (app *App) GenerateMarkdown(projects Projects) error {
 		"parseAsDate":      parseAsDate,
 	}
 
-	t := template.Must(template.New("cf-extensions.md.tmpl").Funcs(funcMap).ParseFiles("cf-extensions.md.tmpl"))
+	wd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
+	templatePath := path.Join(wd, "templates", "cf-extensions.md.tmpl")
+	t := template.Must(template.New("cf-extensions.md.tmpl").Funcs(funcMap).ParseFiles(templatePath))
 
 	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
 	defer os.Remove(tmpFile.Name())
@@ -113,7 +123,7 @@ func (app *App) GenerateMarkdown(projects Projects) error {
 	return nil
 }
 
-func (app *App) PushJsonDb(projects Projects) error {
+func (app *App) PushJsonDb(projects models.Projects) error {
 	fileContents, _, _, err := app.Client.Repositories.GetContents(context.Background(),
 		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
 	if err != nil {
@@ -157,8 +167,8 @@ func (app *App) PushJsonDb(projects Projects) error {
 
 // Private utility functions
 
-func print(org string, infos []Info) {
-	sort.Sort(Infos(infos))
+func print(org string, infos []models.Info) {
+	sort.Sort(models.Infos(infos))
 
 	fmt.Println()
 	fmt.Printf("Repos for %s, total: %d\n", org, len(infos))
@@ -172,13 +182,13 @@ func print(org string, infos []Info) {
 	fmt.Printf("Total repos: %d\n", len(infos))
 }
 
-func hasProjectsChanged(projects Projects, fileContent *github.RepositoryContent) bool {
+func hasProjectsChanged(projects models.Projects, fileContent *github.RepositoryContent) bool {
 	fileBytes, err := extractFileBytes(fileContent)
 	if err != nil {
 		return true
 	}
 
-	downloadedProjects := Projects{}
+	downloadedProjects := models.Projects{}
 	err = json.Unmarshal(fileBytes, &downloadedProjects)
 	if err != nil {
 		return true
