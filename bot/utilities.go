@@ -14,6 +14,8 @@ import (
 	"github.com/maximilien/cf-extensions/models"
 )
 
+// Private
+
 func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
 	response, err := http.Get(*fileContent.DownloadURL)
 	if err != nil {
@@ -40,32 +42,34 @@ func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
 	return fileBytes, nil
 }
 
-func length(infos []models.Info) int {
+// Public
+
+func Length(infos []models.Info) int {
 	return len(infos)
 }
 
-func currentTime() time.Time {
+func CurrentTime() time.Time {
 	return time.Now()
 }
 
-func formatAsDate(t time.Time) string {
+func FormatAsDate(t time.Time) string {
 	year, month, day := t.Date()
 
 	return fmt.Sprintf("%d/%d/%d", month, day, year)
 }
 
-func formatAsDateTime(t time.Time) string {
+func FormatAsDateTime(t time.Time) string {
 	year, month, day := t.Date()
 
 	return fmt.Sprintf("%d/%d/%d @ %d:%d:%d", month, day, year, t.Hour(), t.Minute(), t.Second())
 }
 
-func parseAsDate(timeString string) string {
+func ParseAsDate(timeString string) string {
 	stringTime, err := time.Parse("2017-02-03T12:00:00Z07:00", timeString)
 	if err != nil {
 		fmt.Printf("ERROR parsing time: %s, message: %s\n", timeString, err.Error())
-		return formatAsDate(time.Now())
+		return FormatAsDate(time.Now())
 	}
 
-	return formatAsDate(stringTime)
+	return FormatAsDate(stringTime)
 }

@@ -67,11 +67,11 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 	}
 
 	funcMap := template.FuncMap{
-		"length":           length,
-		"currentTime":      currentTime,
-		"formatAsDate":     formatAsDate,
-		"formatAsDateTime": formatAsDateTime,
-		"parseAsDate":      parseAsDate,
+		"Length":           Length,
+		"CurrentTime":      CurrentTime,
+		"FormatAsDate":     FormatAsDate,
+		"FormatAsDateTime": FormatAsDateTime,
+		"ParseAsDate":      ParseAsDate,
 	}
 
 	wd, err := os.Getwd()
