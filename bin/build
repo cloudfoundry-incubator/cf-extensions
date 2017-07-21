@@ -6,7 +6,7 @@ bin=$(dirname $0)
 echo -e "\nFormatting packages..."
 $bin/env go fmt ./...
 
-echo -e "\nGenerating Binary..."
+echo -e "\nGenerating Binary... with $($bin/env go version)"
 $bin/env go build -o $(dirname $0)/../out/cf-extensions *.go
 
 echo -e "out/cf-extensions"
