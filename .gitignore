@@ -24,4 +24,4 @@ _testmain.go
 *.test
 *.prof
 
-main
+credentials.json

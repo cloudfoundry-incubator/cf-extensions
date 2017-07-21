@@ -20,11 +20,17 @@ import (
 
 type App struct {
 	accessToken string
+	Username    string
+	Email       string
 	Client      *github.Client
 }
 
-func NewApp(accessToken string) *App {
-	app := &App{accessToken: accessToken}
+func NewApp(accessToken, username, email string) *App {
+	app := &App{
+		accessToken: accessToken,
+		Username:    username,
+		Email:       email,
+	}
 
 	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: app.accessToken})
 	app.Client = github.NewClient(oauth2.NewClient(context.Background(), ts))
@@ -109,7 +115,7 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		Message:   &message,
 		Content:   contents,
 		SHA:       projectsMdFileContents.SHA,
-		Committer: &github.CommitAuthor{Name: github.String("maximilien"), Email: github.String("maxim@us.ibm.com")},
+		Committer: &github.CommitAuthor{Name: github.String(app.Username), Email: github.String(app.Email)},
 	}
 
 	updateResponse, _, err := app.Client.Repositories.UpdateFile(context.Background(), "cloudfoundry-incubator", "cf-extensions", "projects.md", repositoryContentsOptions)
@@ -151,7 +157,7 @@ func (app *App) PushJsonDb(projects models.Projects) error {
 		Message:   &message,
 		Content:   contents,
 		SHA:       fileContents.SHA,
-		Committer: &github.CommitAuthor{Name: github.String("maximilien"), Email: github.String("maxim@us.ibm.com")},
+		Committer: &github.CommitAuthor{Name: github.String(app.Username), Email: github.String(app.Email)},
 	}
 
 	updateResponse, _, err := app.Client.Repositories.UpdateFile(context.Background(), "cloudfoundry-incubator", "cf-extensions", "projects.json", repositoryContentsOptions)

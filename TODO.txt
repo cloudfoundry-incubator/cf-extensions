@@ -1,6 +1,5 @@
 # Working
 
-+ Remove hard coded github auth token and org
 + Fix issue with parsing Info.*Date fields
 + Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
 + Add integration test
@@ -18,3 +17,4 @@
 - Refactor code with main() and add bin/build
 - Add some simple tests and bin/test
 - Create presentation and share with IBM team then community
+- Remove hard coded github auth token and org
