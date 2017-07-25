@@ -10,6 +10,7 @@ import (
 	"github.com/google/go-github/github"
 
 	"github.com/maximilien/cf-extensions/models"
+	"time"
 )
 
 type ExtRepos struct {
@@ -73,7 +74,14 @@ func (extRepos *ExtRepos) HasTopics(repo *github.Repository, topics []string) bo
 }
 
 func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
-	return models.Info{}
+	return models.Info{
+		ProposalUrl: models.PROPOSAL_DEFAULT_URL,
+
+		LogoUrl: models.LOGO_DEFAULT_URL,
+		IconUrl: models.ICON_DEFAULT_URL,
+
+		ProposedDate: time.Now().String(),
+	}
 }
 
 func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
@@ -84,6 +92,7 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
 			info = extRepos.DefaultInfo(r)
 			infos = append(infos, models.Info{})
 		} else {
+			info.AddDefaults()
 			infos = append(infos, info)
 		}
 	}

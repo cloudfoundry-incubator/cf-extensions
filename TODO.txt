@@ -1,8 +1,6 @@
 # Working
 
 + Fix issue with parsing Info.*Date fields
-+ Add proposal docs link to Info
-+ Add logo/icon to Info
 
 + Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than commit
 + Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
@@ -35,3 +33,5 @@
 - Add some simple tests and bin/test
 - Create presentation and share with IBM team then community
 - Remove hard coded github auth token and org
+- Add proposal docs link to Info
+- Add logo/icon to Info

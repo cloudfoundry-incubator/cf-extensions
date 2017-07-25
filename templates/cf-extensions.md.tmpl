@@ -4,7 +4,8 @@
 
 {{- range .Infos }}
 
-## [{{.Name}}](https://github.com/{{.GitUrl}})
+## [{{.Name}}](https://github.com/{{.GitUrl}}) ![Icon of {{.Name}}]({{.IconUrl}})
+
 **Status**: {{ .Status }} (changed on {{ .ChangedDate | ParseAsDate }})
 
 **Owner**: {{ .OwnerCompany }}, {{ .ContactEmail }}
@@ -15,6 +16,9 @@
 {{ .Description }}
 
 ### Links
+
+**Proposal URL**: [{{ .ProposalUrl }}]({{ .ProposalUrl }})
+
 **Git URL**: [{{ .GitUrl }}]({{ .GitUrl }})
 
 {{if .TrackerUrl -}}
