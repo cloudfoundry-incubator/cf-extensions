@@ -61,8 +61,12 @@ func (app *App) Run(org string, topics []string) {
 }
 
 func (app *App) GenerateMarkdown(projects models.Projects) error {
-	fileContents, _, _, err := app.Client.Repositories.GetContents(context.Background(),
-		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
+	fileContents, _, _, err := app.Client.Repositories.GetContents(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"data/projects.json",
+		&github.RepositoryContentGetOptions{})
 	if err != nil {
 		return err
 	}
@@ -99,8 +103,12 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		return err
 	}
 
-	projectsMdFileContents, _, _, err := app.Client.Repositories.GetContents(context.Background(),
-		"cloudfoundry-incubator", "cf-extensions", "projects.md", &github.RepositoryContentGetOptions{})
+	projectsMdFileContents, _, _, err := app.Client.Repositories.GetContents(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"docs/projects.md",
+		&github.RepositoryContentGetOptions{})
 	if err != nil {
 		return err
 	}
@@ -118,7 +126,12 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		Committer: &github.CommitAuthor{Name: github.String(app.Username), Email: github.String(app.Email)},
 	}
 
-	updateResponse, _, err := app.Client.Repositories.UpdateFile(context.Background(), "cloudfoundry-incubator", "cf-extensions", "projects.md", repositoryContentsOptions)
+	updateResponse, _, err := app.Client.Repositories.UpdateFile(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"docs/projects.md",
+		repositoryContentsOptions)
 	if err != nil {
 		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
 		return err
@@ -130,8 +143,12 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 }
 
 func (app *App) PushJsonDb(projects models.Projects) error {
-	fileContents, _, _, err := app.Client.Repositories.GetContents(context.Background(),
-		"cloudfoundry-incubator", "cf-extensions", "projects.json", &github.RepositoryContentGetOptions{})
+	fileContents, _, _, err := app.Client.Repositories.GetContents(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"data/projects.json",
+		&github.RepositoryContentGetOptions{})
 	if err != nil {
 		return err
 	}
@@ -160,7 +177,12 @@ func (app *App) PushJsonDb(projects models.Projects) error {
 		Committer: &github.CommitAuthor{Name: github.String(app.Username), Email: github.String(app.Email)},
 	}
 
-	updateResponse, _, err := app.Client.Repositories.UpdateFile(context.Background(), "cloudfoundry-incubator", "cf-extensions", "projects.json", repositoryContentsOptions)
+	updateResponse, _, err := app.Client.Repositories.UpdateFile(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"data/projects.json",
+		repositoryContentsOptions)
 	if err != nil {
 		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
 		return err
