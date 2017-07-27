@@ -118,6 +118,7 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		return err
 	}
 
+	//docs/projects.md
 	message := "Updating cf-extensions projects.md file"
 	repositoryContentsOptions := &github.RepositoryContentFileOptions{
 		Message:   &message,
@@ -138,6 +139,28 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 	}
 
 	fmt.Printf("Commited projects.md %s\n", *updateResponse.Commit.SHA)
+
+	//docs/index.md
+	message = "Updating cf-extensions index.md file"
+	repositoryContentsOptions = &github.RepositoryContentFileOptions{
+		Message:   &message,
+		Content:   contents,
+		SHA:       projectsMdFileContents.SHA,
+		Committer: &github.CommitAuthor{Name: github.String(app.Username), Email: github.String(app.Email)},
+	}
+
+	updateResponse, _, err = app.Client.Repositories.UpdateFile(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"docs/index.md",
+		repositoryContentsOptions)
+	if err != nil {
+		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
+		return err
+	}
+
+	fmt.Printf("Commited index.md %s\n", *updateResponse.Commit.SHA)
 
 	return nil
 }
