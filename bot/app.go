@@ -51,7 +51,7 @@ func (app *App) Run(org string, topics []string) {
 		fmt.Printf("ERROR: saving / pushing projects file: %s\n", err.Error())
 	}
 
-	err = app.GenerateMarkdown(projects)
+	err = app.GenerateMarkdowns(projects)
 	if err != nil {
 		fmt.Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
 	}
@@ -60,7 +60,21 @@ func (app *App) Run(org string, topics []string) {
 
 }
 
-func (app *App) GenerateMarkdown(projects models.Projects) error {
+func (app *App) GenerateMarkdowns(projects models.Projects) error {
+	err := app.GenerateProjectsMarkdown(projects)
+	if err != nil {
+		return err
+	}
+
+	err = app.GenerateIndexMarkdown(projects)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (app *App) GenerateProjectsMarkdown(projects models.Projects) error {
 	fileContents, _, _, err := app.Client.Repositories.GetContents(
 		context.Background(),
 		"cloudfoundry-incubator",
@@ -89,8 +103,8 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		return err
 	}
 
-	templatePath := path.Join(wd, "templates", "cf-extensions.md.tmpl")
-	t := template.Must(template.New("cf-extensions.md.tmpl").Funcs(funcMap).ParseFiles(templatePath))
+	templatePath := path.Join(wd, "templates", "projects.md.tmpl")
+	t := template.Must(template.New("projects.md.tmpl").Funcs(funcMap).ParseFiles(templatePath))
 
 	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
 	defer os.Remove(tmpFile.Name())
@@ -103,6 +117,12 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		return err
 	}
 
+	contents, err := ioutil.ReadFile(tmpFile.Name())
+	if err != nil {
+		return err
+	}
+
+	//docs/projects.md
 	projectsMdFileContents, _, _, err := app.Client.Repositories.GetContents(
 		context.Background(),
 		"cloudfoundry-incubator",
@@ -113,12 +133,6 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 		return err
 	}
 
-	contents, err := ioutil.ReadFile(tmpFile.Name())
-	if err != nil {
-		return err
-	}
-
-	//docs/projects.md
 	message := "Updating cf-extensions projects.md file"
 	repositoryContentsOptions := &github.RepositoryContentFileOptions{
 		Message:   &message,
@@ -140,16 +154,76 @@ func (app *App) GenerateMarkdown(projects models.Projects) error {
 
 	fmt.Printf("Commited projects.md %s\n", *updateResponse.Commit.SHA)
 
-	//docs/index.md
-	message = "Updating cf-extensions index.md file"
-	repositoryContentsOptions = &github.RepositoryContentFileOptions{
+	return nil
+}
+
+func (app *App) GenerateIndexMarkdown(projects models.Projects) error {
+	fileContents, _, _, err := app.Client.Repositories.GetContents(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"data/projects.json",
+		&github.RepositoryContentGetOptions{})
+	if err != nil {
+		return err
+	}
+
+	if !hasProjectsChanged(projects, fileContents) {
+		fmt.Printf("Commited projects.md has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		return nil
+	}
+
+	funcMap := template.FuncMap{
+		"Length":           Length,
+		"CurrentTime":      CurrentTime,
+		"FormatAsDate":     FormatAsDate,
+		"FormatAsDateTime": FormatAsDateTime,
+		"ParseAsDate":      ParseAsDate,
+	}
+
+	wd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
+	templatePath := path.Join(wd, "templates", "index.md.tmpl")
+	t := template.Must(template.New("index.md.tmpl").Funcs(funcMap).ParseFiles(templatePath))
+
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "cf-extensions")
+	defer os.Remove(tmpFile.Name())
+	if err != nil {
+		return err
+	}
+
+	err = t.Execute(tmpFile, projects)
+	if err != nil {
+		return err
+	}
+
+	contents, err := ioutil.ReadFile(tmpFile.Name())
+	if err != nil {
+		return err
+	}
+
+	indexMdFileContents, _, _, err := app.Client.Repositories.GetContents(
+		context.Background(),
+		"cloudfoundry-incubator",
+		"cf-extensions",
+		"docs/index.md",
+		&github.RepositoryContentGetOptions{})
+	if err != nil {
+		return err
+	}
+
+	message := "Updating cf-extensions index.md file"
+	repositoryContentsOptions := &github.RepositoryContentFileOptions{
 		Message:   &message,
 		Content:   contents,
-		SHA:       projectsMdFileContents.SHA,
+		SHA:       indexMdFileContents.SHA,
 		Committer: &github.CommitAuthor{Name: github.String(app.Username), Email: github.String(app.Email)},
 	}
 
-	updateResponse, _, err = app.Client.Repositories.UpdateFile(
+	updateResponse, _, err := app.Client.Repositories.UpdateFile(
 		context.Background(),
 		"cloudfoundry-incubator",
 		"cf-extensions",
