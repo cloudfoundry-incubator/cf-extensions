@@ -39,9 +39,7 @@ func NewApp(accessToken, username, email string) *App {
 }
 
 func (app *App) Run(org string, topics []string) {
-	extRepos := NewExtRepos("cloudfoundry-incubator",
-		[]string{"cf-extensions"},
-		app.Client)
+	extRepos := NewExtRepos(app.Username, org, topics, app.Client)
 	infos := extRepos.GetInfos()
 	sort.Sort(models.Infos(infos))
 

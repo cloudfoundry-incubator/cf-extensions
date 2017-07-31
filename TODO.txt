@@ -1,12 +1,15 @@
 # Working
 
-+ Fix issue with parsing Info.*Date fields
-
-+ Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than commit
++ Avoid duplicating issue for info if already sent and open
++ Remove unnecessary fields in .cf-extensions Info, i.e., name, status, status_date_changed
 + Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
+
++ Fix issue with parsing Info.*Date fields
 
 + Add more details to project's README.md
 + Add links or preview to README.md of CF-Extensions process and template
+
++ add HTML anchors to generated pages
 
 + Move this code to the cloudfoundry-incubator/cf-extensions
 + Delete this repo
@@ -18,6 +21,11 @@
 
 + Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
 + Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
+
+# Future
+
++ Send PR to CF-Extensions project when identified w/o .cf-extensions file rather than issue
++ Periodically clean up forked projects created for PRs
 
 # Done
 
@@ -31,3 +39,4 @@
 - Add proposal docs link to Info
 - Add logo/icon to Info
 - Look into generating GitHub pages or wiki for projects summary
+- Send an issue to repos without .cf-extensions but that have topics
