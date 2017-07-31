@@ -28,7 +28,7 @@ const INFO_ISSUE_BODY = `Add {{.Filename}} file to your repo so that it shows co
 
 This is a JSON formatted file. The default values in the file are for you to get started. You should edit to match your project's data.
 
-For example, the field tracker_url should contain your project's tracker URL, and so on.
+For example, the field {{.TrackerUrl}} should contain your project's tracker URL, and so on.
 `
 
 func NewExtRepos(username, org string, topics []string, client *github.Client) *ExtRepos {
@@ -156,12 +156,14 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 	}
 
 	type IssueInfo struct {
-		Filename string
-		InfoJson string
+		Filename   string
+		InfoJson   string
+		TrackerUrl string
 	}
 	issueInfo := IssueInfo{
 		"`.cf-extensions`",
 		fmt.Sprintf("```json\n%s\n```", string(infoBytes)),
+		"`tracker_url`",
 	}
 	issueInfoTemplate, err := template.New("issue-info").Parse(INFO_ISSUE_BODY)
 	if err != nil {
