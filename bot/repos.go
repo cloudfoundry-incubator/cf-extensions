@@ -22,6 +22,8 @@ type ExtRepos struct {
 	Client   *github.Client
 }
 
+const ISSUE_TITLE = "Add .cf-extensions to your repo to be listed in cloudfoundry-incubator.cf-extensions"
+
 const INFO_ISSUE_BODY = `Add {{.Filename}} file to your repo so that it shows correctly in the CF-Extensions catalog.
 
 {{.InfoJson}}
@@ -117,12 +119,15 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
 		info, err := extRepos.FetchInfo(r)
 		if err != nil {
 			info = extRepos.DefaultInfo(r)
-			//TODO: don't create issue again
-			issue, err := extRepos.CreateInfoIssue(info, r)
-			if err != nil {
-				fmt.Printf("ERROR creating default info issue to: %s, message: %s\n", info.Name, err.Error())
+			if !extRepos.InfoIssueExists(info) {
+				issue, err := extRepos.CreateInfoIssue(info, r)
+				if err != nil {
+					fmt.Printf("ERROR creating default info issue to: %s, message: %s\n", info.Name, err.Error())
+				}
+				fmt.Printf("Created default info issue #%d to: %s\n", *issue.Number, info.Name)
+			} else {
+				fmt.Printf("Info issue already exists in %s\n", info.Name)
 			}
-			fmt.Printf("Created default info issue #%d to: %s\n", *issue.Number, info.Name)
 		} else {
 			info.AddDefaults()
 			infos = append(infos, info)
@@ -193,7 +198,7 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 	}
 
 	issueRequest := github.IssueRequest{
-		Title: github.String("Add .cf-extensions to your repo to be listed in cloudfoundry-incubator.cf-extensions"),
+		Title: github.String(ISSUE_TITLE),
 		Body:  github.String(string(issueInfoContents)),
 	}
 
@@ -204,4 +209,25 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 	}
 
 	return issue, nil
+}
+
+func (extRepos *ExtRepos) InfoIssueExists(info models.Info) bool {
+	issueListByRepoOpts := github.IssueListByRepoOptions{
+		State:   "open",
+		Creator: extRepos.Username,
+	}
+
+	issues, _, err := extRepos.Client.Issues.ListByRepo(context.Background(), extRepos.Org, info.Name, &issueListByRepoOpts)
+	if err != nil {
+		fmt.Printf("Issues.List returned error: %v\n", err)
+		return false
+	}
+
+	for _, issue := range issues {
+		if *issue.Title == ISSUE_TITLE {
+			return true
+		}
+	}
+
+	return false
 }

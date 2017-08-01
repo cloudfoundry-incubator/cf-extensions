@@ -1,6 +1,5 @@
 # Working
 
-+ Avoid duplicating issue for info if already sent and open
 + Remove unnecessary fields in .cf-extensions Info, i.e., name, status, status_date_changed
 + Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
 
@@ -14,10 +13,10 @@
 + Move this code to the cloudfoundry-incubator/cf-extensions
 + Delete this repo
 
-+ Update CF-Extensions project presentation for Monday 7/31 call and record
++ Update CF-Extensions project presentation for CAB call Wednesday 8/16 call and record
 + Add links to presentation and recording to README.md
 
-+ Add integration test
++ Add some integration test
 
 + Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
 + Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
@@ -41,3 +40,4 @@
 - Look into generating GitHub pages or wiki for projects summary
 - Send an issue to repos without .cf-extensions but that have topics
 - Add basic repo statistics, e.g., likes, followers, forks, commits, contributors
+- Avoid duplicating issue for info if already sent and open
