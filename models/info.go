@@ -15,6 +15,13 @@ type Status struct {
 	ChangedDate string `json:"status_changed_date"`
 }
 
+type Statistics struct {
+	ForksCount      int `json:"forks_count,omitempty"`
+	OpenIssuesCount int `json:"open_issues_count,omitempty"`
+	StargazersCount int `json:"stargazers_count,omitempty"`
+	WatchersCount   int `json:"watchers_count,omitempty"`
+}
+
 type Info struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -32,8 +39,12 @@ type Info struct {
 
 	Status
 
+	Stats Statistics `json:"-"`
+
 	Repo *github.Repository `json:"-"`
 }
+
+// Infos methods
 
 type Infos []Info
 
@@ -46,6 +57,19 @@ func (infos Infos) Swap(i, j int) {
 }
 func (infos Infos) Less(i, j int) bool {
 	return infos[i].Name < infos[j].Name
+}
+
+// Info methods
+
+func CreateInfo(repo *github.Repository) *Info {
+	info := Info{
+		Repo: repo,
+	}
+
+	info.AddDefaults()
+	info.UpdateStats()
+
+	return &info
 }
 
 func (info *Info) AddDefaults() {
@@ -63,5 +87,18 @@ func (info *Info) AddDefaults() {
 
 	if info.ProposedDate == "" {
 		info.ProposedDate = time.Now().String()
+	}
+}
+
+func (info *Info) UpdateStats() {
+	if info.Repo == nil {
+		return
+	}
+
+	info.Stats = Statistics{
+		ForksCount:      *(info.Repo).ForksCount,
+		OpenIssuesCount: *(info.Repo).OpenIssuesCount,
+		StargazersCount: *(info.Repo).StargazersCount,
+		WatchersCount:   *(info.Repo).WatchersCount,
 	}
 }

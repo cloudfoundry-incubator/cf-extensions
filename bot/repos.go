@@ -87,7 +87,7 @@ func (extRepos *ExtRepos) HasTopics(repo *github.Repository, topics []string) bo
 }
 
 func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
-	return models.Info{
+	info := models.Info{
 		Name:   *repo.Name,
 		GitUrl: *repo.GitURL,
 
@@ -105,6 +105,10 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 
 		Repo: repo,
 	}
+
+	info.UpdateStats()
+
+	return info
 }
 
 func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
@@ -144,6 +148,7 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	if err != nil {
 		return models.Info{}, err
 	}
+	info.UpdateStats()
 
 	return info, nil
 }

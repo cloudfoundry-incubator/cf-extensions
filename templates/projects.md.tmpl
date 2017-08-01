@@ -6,7 +6,9 @@
 
 ## [{{.Name}}]({{.GitUrl}}) ![Icon of {{.Name}}]({{.IconUrl}})
 
-**Status**: {{ .Status }} (changed on {{ .ChangedDate | ParseAsDate }})
+**Stats**: Watchers ({{.Stats.WatchersCount}}) | Stars ({{.Stats.StargazersCount}}) | Forks ({{.Stats.ForksCount}}) | Open issues ({{.Stats.OpenIssuesCount}})
+
+**Status**: *{{ .Status }}* (changed on {{ .ChangedDate | ParseAsDate }})
 
 **Owner**: {{ .OwnerCompany }}, {{ .ContactEmail }}
 

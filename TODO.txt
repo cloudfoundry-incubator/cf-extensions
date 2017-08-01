@@ -40,3 +40,4 @@
 - Add logo/icon to Info
 - Look into generating GitHub pages or wiki for projects summary
 - Send an issue to repos without .cf-extensions but that have topics
+- Add basic repo statistics, e.g., likes, followers, forks, commits, contributors
