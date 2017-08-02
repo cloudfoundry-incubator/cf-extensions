@@ -75,8 +75,8 @@ func (app *App) GenerateMarkdowns(projects models.Projects) error {
 func (app *App) GenerateProjectsMarkdown(projects models.Projects) error {
 	fileContents, _, _, err := app.Client.Repositories.GetContents(
 		context.Background(),
-		"cloudfoundry-incubator",
-		"cf-extensions",
+		app.Username,
+		app.Org,
 		"data/projects.json",
 		&github.RepositoryContentGetOptions{})
 	if err != nil {
