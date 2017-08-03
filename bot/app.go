@@ -22,6 +22,7 @@ type App struct {
 	accessToken string
 	Username    string
 	Email       string
+	ExtRepos    *ExtRepos
 	Client      *github.Client
 }
 
@@ -39,11 +40,11 @@ func NewApp(accessToken, username, email string) *App {
 }
 
 func (app *App) Run(org string, topics []string) {
-	extRepos := NewExtRepos(app.Username, org, topics, app.Client)
-	infos := extRepos.GetInfos()
+	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
+	infos := app.ExtRepos.GetInfos()
 	sort.Sort(models.Infos(infos))
 
-	projects := models.Projects{Org: extRepos.Org, Infos: infos}
+	projects := models.Projects{Org: app.ExtRepos.Org, Infos: infos}
 	err := app.PushJsonDb(projects)
 	if err != nil {
 		fmt.Printf("ERROR: saving / pushing projects file: %s\n", err.Error())
@@ -54,7 +55,7 @@ func (app *App) Run(org string, topics []string) {
 		fmt.Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
 	}
 
-	print(extRepos.Org, infos)
+	print(app.ExtRepos.Org, infos)
 
 }
 
@@ -75,8 +76,8 @@ func (app *App) GenerateMarkdowns(projects models.Projects) error {
 func (app *App) GenerateProjectsMarkdown(projects models.Projects) error {
 	fileContents, _, _, err := app.Client.Repositories.GetContents(
 		context.Background(),
-		app.Username,
-		app.Org,
+		"cloudfoundry-incubator",
+		"cf-extensions",
 		"data/projects.json",
 		&github.RepositoryContentGetOptions{})
 	if err != nil {

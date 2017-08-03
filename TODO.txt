@@ -1,5 +1,8 @@
 # Working
 
++ Add links to latest and previous releases (if exist)
++ Iterate over pages for issue search code
+
 + Remove unnecessary fields in .cf-extensions Info, i.e., name, status, status_date_changed
 + Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
 
@@ -20,6 +23,8 @@
 
 + Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
 + Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
+
++ Create cf-extensions-bot GitHub user with access to all cloudfoundry orgs
 
 # Future
 
