@@ -37,8 +37,6 @@ type Info struct {
 	ContactEmail string `json:"contact_email"`
 	ProposedDate string `json:"proposed_date"`
 
-	LatestReleaseUrl string `json:"latest_release_url"`
-
 	Status
 
 	Stats Statistics `json:"-"`

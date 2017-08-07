@@ -122,9 +122,9 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
 			if !extRepos.InfoIssueExists(info) {
 				issue, err := extRepos.CreateInfoIssue(info, r)
 				if err != nil {
-					fmt.Printf("ERROR creating default info issue to: %s, message: %s\n", info.Name, err.Error())
+					fmt.Printf("ERROR creating default info issue in repo: %s, message: %s\n", info.Name, err.Error())
 				}
-				fmt.Printf("Created default info issue #%d to: %s\n", *issue.Number, info.Name)
+				fmt.Printf("Created default info issue #%d in repo: %s\n", *issue.Number, info.Name)
 			} else {
 				fmt.Printf("Info issue already exists in %s\n", info.Name)
 			}
@@ -228,20 +228,29 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 
 func (extRepos *ExtRepos) InfoIssueExists(info models.Info) bool {
 	issueListByRepoOpts := github.IssueListByRepoOptions{
-		State:   "open",
-		Creator: extRepos.Username,
+		State:       "open",
+		Creator:     extRepos.Username,
+		ListOptions: github.ListOptions{PerPage: 30},
 	}
 
-	issues, _, err := extRepos.Client.Issues.ListByRepo(context.Background(), extRepos.Org, info.Name, &issueListByRepoOpts)
-	if err != nil {
-		fmt.Printf("Issues.List returned error: %v\n", err)
-		return false
-	}
-
-	for _, issue := range issues {
-		if *issue.Title == ISSUE_TITLE {
-			return true
+	for {
+		issues, resp, err := extRepos.Client.Issues.ListByRepo(context.Background(), extRepos.Org, info.Name, &issueListByRepoOpts)
+		if err != nil {
+			fmt.Printf("Issues.List returned error: %v\n", err)
+			return false
 		}
+
+		for _, issue := range issues {
+			if *issue.Title == ISSUE_TITLE {
+				return true
+			}
+		}
+
+		if resp.NextPage == 0 {
+			break
+		}
+
+		issueListByRepoOpts.Page = resp.NextPage
 	}
 
 	return false
