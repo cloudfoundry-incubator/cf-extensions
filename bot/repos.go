@@ -108,7 +108,7 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 		Repo: repo,
 	}
 
-	info.UpdateFromRepo()
+	info.Update()
 
 	return info
 }
@@ -168,7 +168,7 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	if err != nil {
 		return models.Info{}, err
 	}
-	info.UpdateFromRepo()
+	info.Update()
 
 	return info, nil
 }

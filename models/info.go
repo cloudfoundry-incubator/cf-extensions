@@ -11,22 +11,21 @@ const LOGO_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extension
 const ICON_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png"
 
 type Status struct {
-	Status      string `json:"status"`
-	ChangedDate string `json:"status_changed_date"`
+	Status      string `json:"-"`
+	ChangedDate string `json:"-"`
 }
 
 type Statistics struct {
-	ForksCount      int `json:"forks_count,omitempty"`
-	OpenIssuesCount int `json:"open_issues_count,omitempty"`
-	StargazersCount int `json:"stargazers_count,omitempty"`
-	WatchersCount   int `json:"watchers_count,omitempty"`
+	ForksCount      int `json:"-"`
+	OpenIssuesCount int `json:"-"`
+	StargazersCount int `json:"-"`
+	WatchersCount   int `json:"-"`
 }
 
 type Info struct {
-	Name        string `json:"name"`
+	// Optionally provided by owner
 	Description string `json:"description"`
 
-	GitUrl      string `json:"git_url"`
 	TrackerUrl  string `json:"tracker_url"`
 	ProposalUrl string `json:"proposal_url"`
 
@@ -37,12 +36,18 @@ type Info struct {
 	ContactEmail string `json:"contact_email"`
 	ProposedDate string `json:"proposed_date"`
 
-	Status
+	// Computed fields
+	Name   string `json:"-"`
+	GitUrl string `json:"-"`
 
 	Stats Statistics `json:"-"`
 
 	Repo              *github.Repository        `json:"-"`
 	LatestRepoRelease *github.RepositoryRelease `json:"-"`
+
+	// Protected fields
+
+	Status
 }
 
 // Infos methods
@@ -68,7 +73,7 @@ func CreateInfo(repo *github.Repository) *Info {
 	}
 
 	info.AddDefaults()
-	info.UpdateFromRepo()
+	info.Update()
 
 	return &info
 }
@@ -91,10 +96,20 @@ func (info *Info) AddDefaults() {
 	}
 }
 
-func (info *Info) UpdateFromRepo() {
+func (info *Info) Update() {
+	info.updateFromRepo()
+	info.updateStatus()
+}
+
+// Private methods
+
+func (info *Info) updateFromRepo() {
 	if info.Repo == nil {
 		return
 	}
+
+	info.Name = *(info.Repo).Name
+	info.GitUrl = *(info.Repo).GitURL
 
 	info.Stats = Statistics{
 		ForksCount:      *(info.Repo).ForksCount,
@@ -102,4 +117,8 @@ func (info *Info) UpdateFromRepo() {
 		StargazersCount: *(info.Repo).StargazersCount,
 		WatchersCount:   *(info.Repo).WatchersCount,
 	}
+}
+
+func (info *Info) updateStatus() {
+	//TODO: complete me
 }

@@ -1,6 +1,5 @@
 # Working
 
-+ Remove unnecessary fields in .cf-extensions Info, i.e., name, status, status_date_changed
 + Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
 
 + Fix issue with parsing Info.*Date fields
@@ -45,3 +44,4 @@
 - Avoid duplicating issue for info if already sent and open
 - Add links to latest and previous releases (if exist)
 - Iterate over pages for issue search code
+- Remove unnecessary fields in .cf-extensions Info, i.e., name, status, status_date_changed
