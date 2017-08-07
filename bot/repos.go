@@ -108,7 +108,7 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 		Repo: repo,
 	}
 
-	info.UpdateStats()
+	info.UpdateFromRepo()
 
 	return info
 }
@@ -129,11 +129,26 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
 				fmt.Printf("Info issue already exists in %s\n", info.Name)
 			}
 		} else {
+			latestRepoRelease, err := extRepos.FetchLatestRepoRelease(r)
+			if err != nil {
+				fmt.Printf("Error getting latest release for repo: %s\n", info.Name)
+			} else {
+				info.LatestRepoRelease = latestRepoRelease
+			}
 			info.AddDefaults()
 			infos = append(infos, info)
 		}
 	}
 	return infos
+}
+
+func (extRepos *ExtRepos) FetchLatestRepoRelease(repo *github.Repository) (*github.RepositoryRelease, error) {
+	latestRepoRelease, _, err := extRepos.Client.Repositories.GetLatestRelease(context.Background(), extRepos.Org, *repo.Name)
+	if err != nil {
+		return nil, err
+	}
+
+	return latestRepoRelease, nil
 }
 
 func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error) {
@@ -153,7 +168,7 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	if err != nil {
 		return models.Info{}, err
 	}
-	info.UpdateStats()
+	info.UpdateFromRepo()
 
 	return info, nil
 }

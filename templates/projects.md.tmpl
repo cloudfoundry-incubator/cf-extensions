@@ -29,6 +29,16 @@
 
 {{- end}}
 
+{{if .LatestRepoRelease -}}
+
+**Latest Release**: [{{ .LatestRepoRelease.TagName }}]({{ .LatestRepoRelease.TarballURL }})
+
+{{else}}
+
+**Latest Release**: _No release yet_
+
+{{- end}}
+
 ---
 {{- end}}
 

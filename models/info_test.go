@@ -20,7 +20,8 @@ var _ = Describe("Infos", func() {
 				ContactEmail: "info@info0.com",
 				ProposedDate: "",
 
-				Repo: nil,
+				Repo:              nil,
+				LatestRepoRelease: nil,
 			},
 			Info{
 				Name:        "info1",
@@ -32,7 +33,8 @@ var _ = Describe("Infos", func() {
 				ContactEmail: "info@info1.com",
 				ProposedDate: "",
 
-				Repo: nil,
+				Repo:              nil,
+				LatestRepoRelease: nil,
 			},
 		}
 	})

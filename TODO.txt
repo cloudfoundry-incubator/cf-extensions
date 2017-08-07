@@ -1,6 +1,5 @@
 # Working
 
-+ Add links to latest and previous releases (if exist)
 + Iterate over pages for issue search code
 
 + Remove unnecessary fields in .cf-extensions Info, i.e., name, status, status_date_changed
@@ -46,3 +45,4 @@
 - Send an issue to repos without .cf-extensions but that have topics
 - Add basic repo statistics, e.g., likes, followers, forks, commits, contributors
 - Avoid duplicating issue for info if already sent and open
+- Add links to latest and previous releases (if exist)

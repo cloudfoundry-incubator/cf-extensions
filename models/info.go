@@ -37,11 +37,14 @@ type Info struct {
 	ContactEmail string `json:"contact_email"`
 	ProposedDate string `json:"proposed_date"`
 
+	LatestReleaseUrl string `json:"latest_release_url"`
+
 	Status
 
 	Stats Statistics `json:"-"`
 
-	Repo *github.Repository `json:"-"`
+	Repo              *github.Repository        `json:"-"`
+	LatestRepoRelease *github.RepositoryRelease `json:"-"`
 }
 
 // Infos methods
@@ -67,7 +70,7 @@ func CreateInfo(repo *github.Repository) *Info {
 	}
 
 	info.AddDefaults()
-	info.UpdateStats()
+	info.UpdateFromRepo()
 
 	return &info
 }
@@ -90,7 +93,7 @@ func (info *Info) AddDefaults() {
 	}
 }
 
-func (info *Info) UpdateStats() {
+func (info *Info) UpdateFromRepo() {
 	if info.Repo == nil {
 		return
 	}
