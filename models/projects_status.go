@@ -1,5 +1,10 @@
 package models
 
+import (
+	"errors"
+	"fmt"
+)
+
 type ProjectStatus struct {
 	Name string `json:"name"`
 	Status
@@ -24,6 +29,16 @@ func (ps ProjectStatus) Equals(otherProjectStatus ProjectStatus) bool {
 type ProjectsStatus struct {
 	Org   string          `json:"org"`
 	Array []ProjectStatus `json:"projects_status"`
+}
+
+func (ps ProjectsStatus) StatusForName(name string) (Status, error) {
+	for _, projectStatus := range ps.Array {
+		if projectStatus.Name == name {
+			return projectStatus.Status, nil
+		}
+	}
+
+	return Status{}, errors.New(fmt.Sprintf("Could not find status for `%s`", name))
 }
 
 func (ps ProjectsStatus) Equals(otherProjectsStatus ProjectsStatus) bool {

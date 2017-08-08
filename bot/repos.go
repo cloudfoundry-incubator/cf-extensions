@@ -13,6 +13,7 @@ import (
 	"github.com/google/go-github/github"
 
 	"github.com/maximilien/cf-extensions/models"
+	"path"
 )
 
 type ExtRepos struct {
@@ -42,35 +43,11 @@ func NewExtRepos(username, org string, topics []string, client *github.Client) *
 	}
 }
 
-func (extRepos *ExtRepos) GetInfos() models.Infos {
-	orgOpts := &github.RepositoryListByOrgOptions{
-		ListOptions: github.ListOptions{PerPage: 30},
-	}
+func (extRepos *ExtRepos) GetInfos() ([]models.Info, []models.Info) {
+	allRepos := extRepos.getRepos()
+	projectsStatus := extRepos.extractProjectsStatus()
 
-	var allRepos []*github.Repository
-	for {
-		repos, resp, err := extRepos.Client.Repositories.ListByOrg(context.Background(), extRepos.Org, orgOpts)
-		if err != nil {
-			fmt.Printf("err: %s", err.Error())
-			os.Exit(1)
-		}
-
-		var filteredRepos []*github.Repository
-		for _, r := range repos {
-			if extRepos.HasTopics(r, extRepos.Topics) {
-				filteredRepos = append(filteredRepos, []*github.Repository{r}...)
-			}
-		}
-
-		allRepos = append(allRepos, filteredRepos...)
-		if resp.NextPage == 0 {
-			break
-		}
-
-		orgOpts.Page = resp.NextPage
-	}
-
-	return extRepos.FetchInfos(allRepos)
+	return extRepos.FetchInfos(allRepos, projectsStatus)
 }
 
 func (extRepos *ExtRepos) HasTopics(repo *github.Repository, topics []string) bool {
@@ -113,12 +90,13 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 	return info
 }
 
-func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
-	var infos []models.Info
+func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository, projectsStatus models.ProjectsStatus) ([]models.Info, []models.Info) {
+	var trackedInfos, untrackedInfos []models.Info
 	for _, r := range repos {
 		info, err := extRepos.FetchInfo(r)
 		if err != nil {
 			info = extRepos.DefaultInfo(r)
+			untrackedInfos = append(untrackedInfos, info)
 			if !extRepos.InfoIssueExists(info) {
 				issue, err := extRepos.CreateInfoIssue(info, r)
 				if err != nil {
@@ -136,10 +114,17 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository) []models.Info {
 				info.LatestRepoRelease = latestRepoRelease
 			}
 			info.AddDefaults()
-			infos = append(infos, info)
+			status, err := projectsStatus.StatusForName(info.Name)
+			if err != nil {
+				fmt.Printf("Error could not find status for `%s` adding to untracked projects\n", info.Name)
+				untrackedInfos = append(untrackedInfos, info)
+			} else {
+				info.Status = status
+				trackedInfos = append(trackedInfos, info)
+			}
 		}
 	}
-	return infos
+	return trackedInfos, untrackedInfos
 }
 
 func (extRepos *ExtRepos) FetchLatestRepoRelease(repo *github.Repository) (*github.RepositoryRelease, error) {
@@ -174,7 +159,7 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 }
 
 func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Repository) (*github.Issue, error) {
-	infoBytes, err := json.MarshalIndent(info, "", "  ")
+	infoJson, err := extRepos.extractInfoJson(info)
 	if err != nil {
 		fmt.Printf("Could not marshall info info string error: %v\n", err)
 		return nil, err
@@ -187,7 +172,7 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 	}
 	issueInfo := IssueInfo{
 		"`.cf-extensions`",
-		fmt.Sprintf("```json\n%s\n```", string(infoBytes)),
+		fmt.Sprintf("```json\n%s\n```", infoJson),
 		"`tracker_url`",
 	}
 	issueInfoTemplate, err := template.New("issue-info").Parse(INFO_ISSUE_BODY)
@@ -254,4 +239,73 @@ func (extRepos *ExtRepos) InfoIssueExists(info models.Info) bool {
 	}
 
 	return false
+}
+
+// Private methods
+
+func (extRepos *ExtRepos) getRepos() []*github.Repository {
+	orgOpts := &github.RepositoryListByOrgOptions{
+		ListOptions: github.ListOptions{PerPage: 30},
+	}
+	var allRepos []*github.Repository
+	for {
+		repos, resp, err := extRepos.Client.Repositories.ListByOrg(context.Background(),
+			extRepos.Org,
+			orgOpts)
+		if err != nil {
+			fmt.Printf("err: %s", err.Error())
+			os.Exit(1)
+		}
+
+		var filteredRepos []*github.Repository
+		for _, r := range repos {
+			if extRepos.HasTopics(r, extRepos.Topics) {
+				filteredRepos = append(filteredRepos, []*github.Repository{r}...)
+			}
+		}
+
+		allRepos = append(allRepos, filteredRepos...)
+		if resp.NextPage == 0 {
+			break
+		}
+
+		orgOpts.Page = resp.NextPage
+	}
+	return allRepos
+}
+
+func (extRepos *ExtRepos) extractProjectsStatus() models.ProjectsStatus {
+	projectsStatusPath := path.Join("data", "projects_status.json")
+
+	fileContents, _, _, err := extRepos.Client.Repositories.GetContents(context.Background(),
+		extRepos.Org, "cf-extensions", projectsStatusPath, &github.RepositoryContentGetOptions{})
+	if err != nil {
+		fmt.Printf("Error fetching `%s` with projects status\n", projectsStatusPath)
+		return models.ProjectsStatus{}
+	}
+
+	fileBytes, err := extractFileBytes(fileContents)
+	if err != nil {
+		fmt.Printf("Error reading `%s` with projects status\n", projectsStatusPath)
+		return models.ProjectsStatus{}
+	}
+
+	projectsStatus := models.ProjectsStatus{}
+	err = json.Unmarshal(fileBytes, &projectsStatus)
+	if err != nil {
+		fmt.Printf("Error unmarshalling projects status, message: %s\n", err.Error())
+		return models.ProjectsStatus{}
+	}
+
+	return projectsStatus
+}
+
+func (extRepos *ExtRepos) extractInfoJson(info models.Info) (string, error) {
+	info.Name, info.GitUrl = "", ""
+	infoBytes, err := json.MarshalIndent(info, "", "  ")
+	if err != nil {
+		return "{}", err
+	}
+
+	return string(infoBytes), nil
 }

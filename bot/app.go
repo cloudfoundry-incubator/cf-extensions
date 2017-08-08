@@ -41,13 +41,23 @@ func NewApp(accessToken, username, email string) *App {
 
 func (app *App) Run(org string, topics []string) {
 	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
-	infos := app.ExtRepos.GetInfos()
-	sort.Sort(models.Infos(infos))
+	trackedInfos, untrackedInfos := app.ExtRepos.GetInfos()
 
-	projects := models.Projects{Org: app.ExtRepos.Org, Infos: infos}
-	err := app.PushJsonDb(projects)
+	sort.Sort(models.Infos(trackedInfos))
+	sort.Sort(models.Infos(untrackedInfos))
+
+	projectsPath := path.Join("data", "projects.json")
+	projects := models.Projects{Org: app.ExtRepos.Org, Infos: trackedInfos}
+	err := app.PushProjectsJsonDb(projects, projectsPath)
 	if err != nil {
-		fmt.Printf("ERROR: saving / pushing projects file: %s\n", err.Error())
+		fmt.Printf("ERROR: saving / pushing `%s` file: %s\n", projectsPath, err.Error())
+	}
+
+	untrackedProjectsPath := path.Join("data", "untracked_projects.json")
+	untrackedProjects := models.Projects{Org: app.ExtRepos.Org, Infos: untrackedInfos}
+	err = app.PushProjectsJsonDb(untrackedProjects, untrackedProjectsPath)
+	if err != nil {
+		fmt.Printf("ERROR: saving / pushing `%s` file: %s\n", untrackedProjectsPath, err.Error())
 	}
 
 	err = app.GenerateMarkdowns(projects)
@@ -55,7 +65,7 @@ func (app *App) Run(org string, topics []string) {
 		fmt.Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
 	}
 
-	print(app.ExtRepos.Org, infos)
+	print(app.ExtRepos.Org, trackedInfos)
 
 }
 
@@ -238,12 +248,12 @@ func (app *App) GenerateIndexMarkdown(projects models.Projects) error {
 	return nil
 }
 
-func (app *App) PushJsonDb(projects models.Projects) error {
+func (app *App) PushProjectsJsonDb(projects models.Projects, filePath string) error {
 	fileContents, _, _, err := app.Client.Repositories.GetContents(
 		context.Background(),
 		"cloudfoundry-incubator",
 		"cf-extensions",
-		"data/projects.json",
+		filePath,
 		&github.RepositoryContentGetOptions{})
 	if err != nil {
 		return err
@@ -277,14 +287,14 @@ func (app *App) PushJsonDb(projects models.Projects) error {
 		context.Background(),
 		"cloudfoundry-incubator",
 		"cf-extensions",
-		"data/projects.json",
+		filePath,
 		repositoryContentsOptions)
 	if err != nil {
 		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
 		return err
 	}
 
-	fmt.Printf("Commited projects.json %s\n", *updateResponse.Commit.SHA)
+	fmt.Printf("Commited `%s` %s\n", filePath, *updateResponse.Commit.SHA)
 
 	return nil
 }

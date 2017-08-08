@@ -11,8 +11,8 @@ const LOGO_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extension
 const ICON_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png"
 
 type Status struct {
-	Status      string `json:"-"`
-	ChangedDate string `json:"-"`
+	Status      string `json:"status,omitempty"`
+	ChangedDate string `json:"status_changed_date,omitempty"`
 }
 
 type Statistics struct {
@@ -37,8 +37,8 @@ type Info struct {
 	ProposedDate string `json:"proposed_date"`
 
 	// Computed fields
-	Name   string `json:"-"`
-	GitUrl string `json:"-"`
+	Name   string `json:"name,omitempty"`
+	GitUrl string `json:"git_url,omitempty"`
 
 	Stats Statistics `json:"-"`
 
@@ -98,7 +98,6 @@ func (info *Info) AddDefaults() {
 
 func (info *Info) Update() {
 	info.updateFromRepo()
-	info.updateStatus()
 }
 
 // Private methods
@@ -117,8 +116,4 @@ func (info *Info) updateFromRepo() {
 		StargazersCount: *(info.Repo).StargazersCount,
 		WatchersCount:   *(info.Repo).WatchersCount,
 	}
-}
-
-func (info *Info) updateStatus() {
-	//TODO: complete me
 }

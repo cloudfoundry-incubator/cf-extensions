@@ -98,4 +98,32 @@ var _ = Describe("ProjectsStatus", func() {
 			Expect(projectsStatus1.Equals(ProjectsStatus{})).To(BeFalse())
 		})
 	})
+
+	Context("#StatusForName", func() {
+		It("finds status for existing project", func() {
+			status, err := projectsStatus1.StatusForName("name1")
+			Expect(err).ToNot(HaveOccurred())
+			Expect(status).To(Equal(Status{
+				Status:      "status1",
+				ChangedDate: "2015-14-07T12:00:00Z07:00",
+			}))
+
+			status, err = projectsStatus1.StatusForName("name2")
+			Expect(err).To(HaveOccurred())
+
+			status, err = projectsStatus2.StatusForName("name1")
+			Expect(err).ToNot(HaveOccurred())
+			Expect(status).To(Equal(Status{
+				Status:      "status1",
+				ChangedDate: "2015-14-07T12:00:00Z07:00",
+			}))
+
+			status, err = projectsStatus2.StatusForName("name2")
+			Expect(err).ToNot(HaveOccurred())
+			Expect(status).To(Equal(Status{
+				Status:      "status2",
+				ChangedDate: "2015-14-07T12:00:00Z07:00",
+			}))
+		})
+	})
 })
