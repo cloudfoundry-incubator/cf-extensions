@@ -72,19 +72,19 @@ var _ = Describe("Projects", func() {
 		}
 	})
 
-	Context("#Equal", func() {
+	Context("#Equals", func() {
 		It("returns true that projects are equal", func() {
-			Expect(projects1.Equal(projects2)).To(BeFalse())
-			Expect(projects2.Equal(projects1)).To(BeFalse())
+			Expect(projects1.Equals(projects2)).To(BeFalse())
+			Expect(projects2.Equals(projects1)).To(BeFalse())
 
-			Expect(projects1.Equal(projects1)).To(BeTrue())
+			Expect(projects1.Equals(projects1)).To(BeTrue())
 
 			projects2.Org = "org1"
-			Expect(projects1.Equal(projects2)).To(BeTrue())
+			Expect(projects1.Equals(projects2)).To(BeTrue())
 		})
 
-		It("returns flase when compared to Empty project", func() {
-			Expect(projects1.Equal(Projects{})).To(BeFalse())
+		It("returns false when compared to Empty project", func() {
+			Expect(projects1.Equals(Projects{})).To(BeFalse())
 		})
 	})
 })

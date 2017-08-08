@@ -318,5 +318,5 @@ func hasProjectsChanged(projects models.Projects, fileContent *github.Repository
 		return true
 	}
 
-	return projects.Equal(downloadedProjects) != true
+	return projects.Equals(downloadedProjects) != true
 }

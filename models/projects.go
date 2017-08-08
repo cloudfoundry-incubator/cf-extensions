@@ -5,7 +5,7 @@ type Projects struct {
 	Infos Infos  `json:"projects"`
 }
 
-func (p Projects) Equal(otherProjects Projects) bool {
+func (p Projects) Equals(otherProjects Projects) bool {
 	if p.Org != otherProjects.Org {
 		return false
 	}
