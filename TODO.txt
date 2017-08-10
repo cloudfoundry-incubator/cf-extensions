@@ -1,5 +1,7 @@
 # Working
 
++ Email to Dr.Nick on how to create ext.cloudfoundry.org and point it to: https://cloudfoundry-incubator.github.io/cf-extensions/
++ Write blog post (containing parts of README) to be published on CloudFoundry.org
 + Fix issue with parsing Info.*Date fields
 
 + Add more details to project's README.md
