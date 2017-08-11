@@ -22,7 +22,7 @@ type Credentials struct {
 const credentialsExample = `{
 	"username": "john",
 	"email": "john@smith.com",
-	"accessToken": "30bb3196bd7d24ccab37b0e6def3e556b6ed49f1",
+	"accessToken": "ADD-GITHUB-ACCESS-TOKEN-HERE",
 	"topicFilters": ["test", "topic"],
 	"orgs": ["org0", "org1"]
 }
