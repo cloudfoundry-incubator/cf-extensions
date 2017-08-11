@@ -12,9 +12,6 @@
 
 + add HTML anchors to generated pages
 
-+ Move this code to the cloudfoundry-incubator/cf-extensions
-+ Delete this repo
-
 + Update CF-Extensions project presentation for CAB call Wednesday 8/16 call and record
 + Add links to presentation and recording to README.md
 
@@ -51,3 +48,5 @@
 - Move `status` info from repos to cf-extensions and use link instead (prevents owners from changing it)
 - Create list of untracked_projects.json for projects that do not have statuses
 - Email to Dr.Nick on how to create ext.cloudfoundry.org and point it to: https://cloudfoundry-incubator.github.io/cf-extensions/
+- Move this code to the cloudfoundry-incubator/cf-extensions
+- Delete this private repo
