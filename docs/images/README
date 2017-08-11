@@ -1,0 +1,6 @@
+Default images for CF-Extensions project
+
+Logo is from the CloudFoundry rabbit logo with Proposal as text
+Icon is reduced version of the CloudFoundry rabbit logo
+
+CF-Extensions project who do not define their own logo/icon will default to using these.

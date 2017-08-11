@@ -1,11 +1,12 @@
 package bot
 
 import (
-	"github.com/maximilien/cf-extensions/models"
+	"time"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"time"
+
+	"github.com/cloudfoundry-incubator/cf-extensions/models"
 )
 
 var _ = Describe("utilities", func() {

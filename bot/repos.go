@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/go-github/github"
 
-	"github.com/maximilien/cf-extensions/models"
+	"github.com/cloudfoundry-incubator/cf-extensions/models"
 	"path"
 )
 

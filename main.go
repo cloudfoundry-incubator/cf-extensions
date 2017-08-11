@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"encoding/json"
-	"github.com/maximilien/cf-extensions/bot"
+	"github.com/cloudfoundry-incubator/cf-extensions/bot"
 	"io/ioutil"
 )
 
