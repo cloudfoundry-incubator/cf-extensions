@@ -1,6 +1,6 @@
 # CF-Extensions
 
-**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 2 incubating projects
+**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 3 incubating projects
 
 ## [cf-abacus](git://github.com/cloudfoundry-incubator/cf-abacus.git) ![Icon of cf-abacus](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
@@ -26,6 +26,33 @@ Metering engine for CloudFoundry
 **Latest Release**: [v0.0.5](https://api.github.com/repos/cloudfoundry-incubator/cf-abacus/tarball/v0.0.5)
 
 
+
+---
+
+## [cf-extensions](git://github.com/cloudfoundry-incubator/cf-extensions.git) ![Icon of cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
+
+**Stats**: Watchers (0) | Stars (0) | Forks (0) | Open issues (0)
+
+**Status**: *Incubating* (changed on 8/14/2017)
+
+**Owner**: IBM, maxim@us.ibm.com
+
+**Proposed Date**: 8/14/2017
+
+### Description
+Helps manage CF-Extensions projects
+
+### Links
+
+**Proposal URL**: [https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing)
+
+**Git URL**: [git://github.com/cloudfoundry-incubator/cf-extensions.git](git://github.com/cloudfoundry-incubator/cf-extensions.git)
+
+
+
+
+
+**Latest Release**: _No release yet_
 
 ---
 
@@ -56,4 +83,4 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ---
 
-Last updated on 8/14/2017 @ 14:20:9.
+Last updated on 8/14/2017 @ 14:27:33.
