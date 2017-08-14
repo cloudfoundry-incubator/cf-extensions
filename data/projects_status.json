@@ -1,6 +1,6 @@
 {
   "org": "cloudfoundry-incubator",
-  "projects": [
+  "projects_status": [
     {
       "name": "cf-abacus",
       "status": "Incubating",
