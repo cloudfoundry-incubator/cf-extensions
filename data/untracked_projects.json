@@ -1,1 +1,53 @@
-{}
+{
+  "org": "cloudfoundry-incubator",
+  "projects": [
+    {
+      "description": "Metering engine for CloudFoundry",
+      "tracker_url": "https://www.pivotaltracker.com/n/projects/1385414",
+      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
+      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
+      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
+      "owner_company": "IBM",
+      "contact_email": "Michael Maximilien \u003cmaxim@us.ibm.com\u003e",
+      "proposed_date": "2015-07-14T12:00:00Z07:00",
+      "name": "cf-abacus",
+      "git_url": "git://github.com/cloudfoundry-incubator/cf-abacus.git"
+    },
+    {
+      "description": "ADD DESCRIPTION HERE",
+      "tracker_url": "",
+      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
+      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
+      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
+      "owner_company": "ADD OWNER COMPANY HERE",
+      "contact_email": "contact@owner-company.com",
+      "proposed_date": "2017-08-14 14:12:30.274897815 -0700 PDT",
+      "name": "cf-extensions",
+      "git_url": "git://github.com/cloudfoundry-incubator/cf-extensions.git"
+    },
+    {
+      "description": "Collection of Swagger (Open APIs) description of public CloudFoundry component’s APIs. ",
+      "tracker_url": "",
+      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
+      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
+      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
+      "owner_company": "IBM",
+      "contact_email": "Michael Maximilien \u003cmaxim@us.ibm.com\u003e",
+      "proposed_date": "2015-09-03T12:00:00Z07:00",
+      "name": "cf-swagger",
+      "git_url": "git://github.com/cloudfoundry-incubator/cf-swagger.git"
+    },
+    {
+      "description": "ADD DESCRIPTION HERE",
+      "tracker_url": "",
+      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
+      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
+      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
+      "owner_company": "ADD OWNER COMPANY HERE",
+      "contact_email": "contact@owner-company.com",
+      "proposed_date": "2017-08-14 14:12:30.871822232 -0700 PDT",
+      "name": "test",
+      "git_url": "git://github.com/cloudfoundry-incubator/test.git"
+    }
+  ]
+}
