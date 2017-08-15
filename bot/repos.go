@@ -32,6 +32,12 @@ const INFO_ISSUE_BODY = `Add {{.Filename}} file to your repo so that it shows co
 This is a JSON formatted file. The default values in the file are for you to get started. You should edit to match your project's data.
 
 For example, the field {{.TrackerUrl}} should contain your project's tracker URL, and so on.
+
+*FINAL NOTES*
+
+You may also add two more optional fields: {{.LogoUrl}} and {{.IconUrl}} pointing to images for your logo and icon respectively.
+
+For best results your images should be in JPG or PNG file formats and their sizes around 200x300 pixels for logo and 32x32 pixels for icon.
 `
 
 func NewExtRepos(username, org string, topics []string, client *github.Client) *ExtRepos {
@@ -70,15 +76,13 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 		Name:   *repo.Name,
 		GitUrl: *repo.GitURL,
 
+		OwnerCompany: "ADD OWNER COMPANY HERE",
+		ContactEmail: "contact@owner-company.com",
+
 		Description: "ADD DESCRIPTION HERE",
 
 		ProposalUrl: models.PROPOSAL_DEFAULT_URL,
-
-		LogoUrl: models.LOGO_DEFAULT_URL,
-		IconUrl: models.ICON_DEFAULT_URL,
-
-		OwnerCompany: "ADD OWNER COMPANY HERE",
-		ContactEmail: "contact@owner-company.com",
+		TrackerUrl:  models.TRACKER_DEFAULT_URL,
 
 		ProposedDate: time.Now().String(),
 
@@ -169,11 +173,15 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 		Filename   string
 		InfoJson   string
 		TrackerUrl string
+		LogoUrl    string
+		IconUrl    string
 	}
 	issueInfo := IssueInfo{
 		"`.cf-extensions`",
 		fmt.Sprintf("```json\n%s\n```", infoJson),
 		"`tracker_url`",
+		"`logo_url`",
+		"`icon_url`",
 	}
 	issueInfoTemplate, err := template.New("issue-info").Parse(INFO_ISSUE_BODY)
 	if err != nil {

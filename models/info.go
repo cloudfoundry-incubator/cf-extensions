@@ -7,6 +7,7 @@ import (
 )
 
 const PROPOSAL_DEFAULT_URL = "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing"
+const TRACKER_DEFAULT_URL = "https://www.pivotaltracker.com"
 const LOGO_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png"
 const ICON_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png"
 
@@ -24,16 +25,17 @@ type Statistics struct {
 
 type Info struct {
 	// Optionally provided by owner
+	OwnerCompany string `json:"owner_company"`
+	ContactEmail string `json:"contact_email"`
+
 	Description string `json:"description"`
 
 	TrackerUrl  string `json:"tracker_url"`
 	ProposalUrl string `json:"proposal_url"`
 
-	LogoUrl string `json:"logo_url"`
-	IconUrl string `json:"icon_url"`
+	LogoUrl string `json:"logo_url,omitempty"`
+	IconUrl string `json:"icon_url,omitempty"`
 
-	OwnerCompany string `json:"owner_company"`
-	ContactEmail string `json:"contact_email"`
 	ProposedDate string `json:"proposed_date"`
 
 	// Computed fields
