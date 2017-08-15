@@ -25,21 +25,6 @@ type ExtRepos struct {
 
 const ISSUE_TITLE = "Add .cf-extensions to your repo to be listed in cloudfoundry-incubator.cf-extensions"
 
-const INFO_ISSUE_BODY = `Add {{.Filename}} file to your repo so that it shows correctly in the CF-Extensions catalog.
-
-{{.InfoJson}}
-
-This is a JSON formatted file. The default values in the file are for you to get started. You should edit to match your project's data.
-
-For example, the field {{.TrackerUrl}} should contain your project's tracker URL, and so on.
-
-*FINAL NOTES*
-
-You may also add two more optional fields: {{.LogoUrl}} and {{.IconUrl}} pointing to images for your logo and icon respectively.
-
-For best results your images should be in JPG or PNG file formats and their sizes around 200x300 pixels for logo and 32x32 pixels for icon.
-`
-
 func NewExtRepos(username, org string, topics []string, client *github.Client) *ExtRepos {
 	return &ExtRepos{
 		Username: username,
@@ -176,6 +161,7 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 		LogoUrl    string
 		IconUrl    string
 	}
+
 	issueInfo := IssueInfo{
 		"`.cf-extensions`",
 		fmt.Sprintf("```json\n%s\n```", infoJson),
@@ -183,7 +169,18 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 		"`logo_url`",
 		"`icon_url`",
 	}
-	issueInfoTemplate, err := template.New("issue-info").Parse(INFO_ISSUE_BODY)
+
+	wd, err := os.Getwd()
+	if err != nil {
+		return nil, err
+	}
+
+	issueInfoTmplBytes, err := ioutil.ReadFile(path.Join(wd, "templates", "info_issue.tmpl"))
+	if err != nil {
+		return nil, err
+	}
+
+	issueInfoTemplate, err := template.New("issue-info").Parse(string(issueInfoTmplBytes))
 	if err != nil {
 		fmt.Printf("Could not create issue info error: %v\n", err)
 		return nil, err

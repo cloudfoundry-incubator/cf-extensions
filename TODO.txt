@@ -1,7 +1,5 @@
 # Working
 
-+ Write blog post (containing parts of README) to be published on CloudFoundry.org
-+ Move issue template to a template file
 + Fix issue with parsing Info.*Date fields
 + Add more details to project's README.md
 + Add links or preview to README.md of CF-Extensions process and template
@@ -43,3 +41,5 @@
 - Email to Dr.Nick on how to create ext.cloudfoundry.org and point it to: https://cloudfoundry-incubator.github.io/cf-extensions/
 - Move this code to the cloudfoundry-incubator/cf-extensions
 - Delete this private repo
+- Write blog post (containing parts of README) to be published on CloudFoundry.org
+- Move issue template to a template file
