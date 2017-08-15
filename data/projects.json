@@ -42,20 +42,6 @@
       "git_url": "git://github.com/cloudfoundry-incubator/cf-swagger.git",
       "status": "Incubating",
       "status_changed_date": "2017-03-02T12:00:00Z07:00"
-    },
-    {
-      "description": "My description",
-      "tracker_url": "",
-      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
-      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
-      "owner_company": "IBM",
-      "contact_email": "maxim@us.ibm.com",
-      "proposed_date": "2017-08-15 09:44:56.732924747 -0700 PDT",
-      "name": "test",
-      "git_url": "git://github.com/cloudfoundry-incubator/test.git",
-      "status": "Test",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00"
     }
   ]
 }
