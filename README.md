@@ -44,10 +44,10 @@ If you would like to participate in maintaining and improving the CF-Extensions 
 
 # References
 
-[1] https://github.com/cloudfoundry-incubator/cf-extensions
-[2] [CF-Extensions Projects Lists Docs](https://docs.google.com/document/d/1EqA2vdBCzEAxCrBrhYk7tNdsx0d1hFiArNTPmKvX-qs)
-[3] [CF-Extensions Template](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ)
-[4] [CF-Extensions Process](https://docs.google.com/document/d/1KaYuqNbPrr23d3OsAhi0NTwBNy-LRZK-FbN3LfBgqjw)
-[5] [CF-Extensions Notes](https://docs.google.com/document/d/1RCMHYFQaB1oqdEKev-cVF2Rrr6qqCT9C6RmFFKmUxnI)
-[6] https://developer.github.com/v3/
-[7] https://github.com/google/go-github/
+1. https://github.com/cloudfoundry-incubator/cf-extensions
+2. [CF-Extensions Projects Lists Docs](https://docs.google.com/document/d/1EqA2vdBCzEAxCrBrhYk7tNdsx0d1hFiArNTPmKvX-qs)
+3. [CF-Extensions Template](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ)
+4. [CF-Extensions Process](https://docs.google.com/document/d/1KaYuqNbPrr23d3OsAhi0NTwBNy-LRZK-FbN3LfBgqjw)
+5. [CF-Extensions Notes](https://docs.google.com/document/d/1RCMHYFQaB1oqdEKev-cVF2Rrr6qqCT9C6RmFFKmUxnI)
+6. https://developer.github.com/v3/
+7. https://github.com/google/go-github/
