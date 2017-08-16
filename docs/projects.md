@@ -4,7 +4,7 @@
 
 ## [cf-abacus](git://github.com/cloudfoundry-incubator/cf-abacus.git) ![Icon of cf-abacus](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
-Classified as , and commit style ""
+Classified as *Service*, and commit style *Distributed*
 
 
 **Stats**: Watchers (61) | Stars (61) | Forks (67) | Open issues (62)
@@ -34,7 +34,7 @@ Metering engine for CloudFoundry
 
 ## [cf-extensions](git://github.com/cloudfoundry-incubator/cf-extensions.git) ![Icon of cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
-Classified as , and commit style ""
+Classified as *Tool*, and commit style *Distributed*
 
 
 **Stats**: Watchers (0) | Stars (0) | Forks (0) | Open issues (0)
@@ -64,7 +64,7 @@ Helps manage CF-Extensions projects
 
 ## [cf-swagger](git://github.com/cloudfoundry-incubator/cf-swagger.git) ![Icon of cf-swagger](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
-Classified as , and commit style ""
+Classified as *Tool*, and commit style *Distributed*
 
 
 **Stats**: Watchers (20) | Stars (20) | Forks (8) | Open issues (2)
@@ -94,7 +94,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ## [test](git://github.com/cloudfoundry-incubator/test.git) ![Icon of test](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
-Classified as , and commit style ""
+Classified as *Tool*, and commit style *Distributed*
 
 
 **Stats**: Watchers (0) | Stars (0) | Forks (0) | Open issues (1)
@@ -122,4 +122,4 @@ ADD DESCRIPTION HERE
 
 ---
 
-Last updated on 8/16/2017 @ 11:1:31.
+Last updated on 8/16/2017 @ 11:5:10.
