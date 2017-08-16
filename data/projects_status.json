@@ -8,17 +8,12 @@
     },
     {
       "name": "cf-extensions",
-      "status": "Incubating",
+      "status": "Proposed",
       "status_changed_date": "2017-17-07T12:00:00Z07:00"
     },
     {
       "name": "cf-swagger",
       "status": "Incubating",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00"
-    },
-    {
-      "name": "test",
-      "status": "Test",
       "status_changed_date": "2017-03-02T12:00:00Z07:00"
     }
   ]
