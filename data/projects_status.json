@@ -4,22 +4,30 @@
     {
       "name": "cf-abacus",
       "status": "Incubating",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00"
+      "status_changed_date": "2017-03-02T12:00:00Z07:00".
+      "category": "Service",
+      "commit_style": "Distributed"
     },
     {
       "name": "cf-extensions",
       "status": "Proposed",
-      "status_changed_date": "2017-17-07T12:00:00Z07:00"
+      "status_changed_date": "2017-17-07T12:00:00Z07:00",
+      "category": "Tool",
+      "commit_style": "Distributed"
     },
     {
       "name": "cf-swagger",
       "status": "Incubating",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00"
+      "status_changed_date": "2017-03-02T12:00:00Z07:00",
+      "category": "Tool",
+      "commit_style": "Distributed"
     },
     {
       "name": "test",
       "status": "Unknown",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00"
+      "status_changed_date": "2017-03-02T12:00:00Z07:00",
+      "category": "Tool",
+      "commit_style": "Distributed"
     }
   ]
 }
