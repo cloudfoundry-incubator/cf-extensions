@@ -1,10 +1,20 @@
 # CF-Extensions
 
+## TL;DR
+
 The [`cloudfoundry-incubator/cf-extensions`](https://cloudfoundry-incubator/cf-extensions) is a Golang GitHub bot that runs periodically as a CloudFoundry Golang app and updates the [`data`](/data) and [`docs`](/docs) directory of this repository. 
 
-The `data` folder contains the JSON databases of all discovered extensions (tracked and untracked) as well as the official list of extensions that are accepted and have statuses. 
+The [`data`](/data) folder contains the JSON databases of all discovered extensions ([tracked](/data/projects.json) and [untracked](/data/untracked_projects.json)) as well as the official [list](/docs/projects.md) of extensions that are accepted and have statuses. 
 
-The [`docs`](/docs) folder contains generated docs for the catalog of projects. The following diagram summarizes the work done by the `cf-extensions` bot each time it runs.
+The [`docs`](/docs) folder contains generated docs for the catalog of projects. The primary generated doc is the list of projects with [statuses](/data/projects_status.json).
+
+The following [presentation](https://docs.google.com/presentation/d/1IUklOnUDFuwOqYdez1c0wzM76NZsI94GKI3dbw6RZBY/) and video is from the August 2017 CAB call and gives more quick overview of this project, short demo, and its goals.
+
+## Details
+
+The `cf-extensions` periodically runs (daily) to discover new CF-Extensions project and engage with them in a small workflow to collect metadata. With collected metadata and official status information, the bot dynamically generates curated lists of the projects with information useful to the CF community.
+
+The following diagram summarizes the work done by the `cf-extensions` bot each time it runs.
 
 ![CF-Extensions bot workflow](/docs/images/cf-extensions-bot-flowchart.png?raw=true "cf-extensions bot run process")
 
