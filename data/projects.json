@@ -26,7 +26,7 @@
       "proposed_date": "2017-08-16T18:00:00.000Z",
       "name": "cf-extensions",
       "git_url": "git://github.com/cloudfoundry-incubator/cf-extensions.git",
-      "status": "Incubating",
+      "status": "Proposed",
       "status_changed_date": "2017-17-07T12:00:00Z07:00"
     },
     {
