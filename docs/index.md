@@ -50,9 +50,9 @@ Helps manage CF-Extensions projects
 
 
 
+**Latest Release**: [v0.9.0](https://api.github.com/repos/cloudfoundry-incubator/cf-extensions/tarball/v0.9.0)
 
 
-**Latest Release**: _No release yet_
 
 ---
 
@@ -110,4 +110,4 @@ ADD DESCRIPTION HERE
 
 ---
 
-Last updated on 8/16/2017 @ 8:44:45.
+Last updated on 8/16/2017 @ 10:40:47.
