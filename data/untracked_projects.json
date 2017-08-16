@@ -1,15 +1,4 @@
 {
   "org": "cloudfoundry-incubator",
-  "projects": [
-    {
-      "owner_company": "ADD OWNER COMPANY HERE",
-      "contact_email": "contact@owner-company.com",
-      "description": "ADD DESCRIPTION HERE",
-      "tracker_url": "https://www.pivotaltracker.com",
-      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2017-08-16 06:33:38.046926428 -0700 PDT",
-      "name": "test",
-      "git_url": "git://github.com/cloudfoundry-incubator/test.git"
-    }
-  ]
+  "projects": null
 }
