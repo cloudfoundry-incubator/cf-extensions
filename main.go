@@ -9,7 +9,7 @@ import (
 	"io/ioutil"
 )
 
-const VERSION = "0.9.0"
+const VERSION = "0.9.1"
 
 type Credentials struct {
 	Username     string   `json:"username"`

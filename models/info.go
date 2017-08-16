@@ -8,12 +8,18 @@ import (
 
 const PROPOSAL_DEFAULT_URL = "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing"
 const TRACKER_DEFAULT_URL = "https://www.pivotaltracker.com"
+
 const LOGO_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png"
 const ICON_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png"
+
+const CATEGORY_DEFAULT = "Unknown"
+const COMMIT_STYLE = "Pairing"
 
 type Status struct {
 	Status      string `json:"status,omitempty"`
 	ChangedDate string `json:"status_changed_date,omitempty"`
+	Category    string `json:"category,omitempty"`
+	CommitStyle string `json:"commit_style,omitempty"`
 }
 
 type Statistics struct {
