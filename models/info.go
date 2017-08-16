@@ -12,8 +12,11 @@ const TRACKER_DEFAULT_URL = "https://www.pivotaltracker.com"
 const LOGO_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png"
 const ICON_DEFAULT_URL = "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png"
 
-const CATEGORY_DEFAULT = "Unknown"
-const COMMIT_STYLE = "Pairing"
+const CATEGORY_DEFAULT = "unknown"
+const COMMIT_STYLE = "pairing"
+
+var CATEGORIES = map[string]string{"bosh": "BOSH", "runtime": "Runtime", "apis": "APIs", "cli": "CLI", "tool": "Tool", "unkown": "Unknown"}
+var COMMIT_STYLES = map[string]string{"pairing": "Pairing", "distributed": "Distributed"}
 
 type Status struct {
 	Status      string `json:"status,omitempty"`

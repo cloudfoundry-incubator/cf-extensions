@@ -1,7 +1,6 @@
 # Working
 
 + Make the .cf-extensions metadata file format be either JSON or YML
-+ Add category tag field to Info with specified defaults: BOSH, Runtime, APIs, CLI
 + Add commit_type field (pairing or distributed) to the Info of projects
 + Fix issue with parsing Info.*Date fields
 + Add `dep` support and commit current dependencies
@@ -48,3 +47,5 @@
 - Write blog post (containing parts of README) to be published on CloudFoundry.org
 - Move issue template to a template file
 - Add more details to project's README.md
+- Add category tag field to Info with specified defaults: BOSH, Runtime, APIs, CLI
+
