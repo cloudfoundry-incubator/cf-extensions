@@ -8,7 +8,7 @@ The [`data`](/data) folder contains the JSON databases of all discovered extensi
 
 The [`docs`](/docs) folder contains generated docs for the catalog of projects. The primary generated doc is the list of projects with [statuses](/data/projects_status.json).
 
-The following [presentation](https://docs.google.com/presentation/d/1IUklOnUDFuwOqYdez1c0wzM76NZsI94GKI3dbw6RZBY/) and video is from the August 2017 CAB call and gives more quick overview of this project, short demo, and its goals.
+The following [presentation](https://docs.google.com/presentation/d/1IUklOnUDFuwOqYdez1c0wzM76NZsI94GKI3dbw6RZBY/) and video is from the August 2017 CAB call and gives more quick overview of this project, short demo, and its goals. This [blog](https://www.cloudfoundry.org/introducing-cf-extensions-github-bot-hub-project/) published on the Cloud Foundry site gives a thorough overview of the motivation, overview, and getting started primer for `cf-extensions`.
 
 ## Details
 
