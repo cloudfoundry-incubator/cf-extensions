@@ -40,7 +40,7 @@ Metering engine for CloudFoundry
 **Proposed Date**: 8/21/2017
 
 ### Description
-Helps manage CF-Extensions projects
+A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 ### Links
 
@@ -110,4 +110,4 @@ ADD DESCRIPTION HERE
 
 ---
 
-Last updated on 8/21/2017 @ 16:5:1.
+Last updated on 8/21/2017 @ 16:6:12.
