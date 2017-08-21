@@ -34,18 +34,17 @@ type Statistics struct {
 
 type Info struct {
 	// Optionally provided by owner
-	OwnerCompany string `json:"owner_company"`
-	ContactEmail string `json:"contact_email"`
+	OwnerCompany string `json:"owner_company" yaml:"owner_company"`
+	ContactEmail string `json:"contact_email" yaml:"contact_email"`
 
-	Description string `json:"description"`
+	Description string `json:"description" yaml:"description"`
 
-	TrackerUrl  string `json:"tracker_url"`
-	ProposalUrl string `json:"proposal_url"`
+	TrackerUrl   string `json:"tracker_url" yaml:"tracker_url"`
+	ProposalUrl  string `json:"proposal_url" yaml:"proposal_url"`
+	ProposedDate string `json:"proposed_date" yaml:"proposed_date"`
 
-	LogoUrl string `json:"logo_url,omitempty"`
-	IconUrl string `json:"icon_url,omitempty"`
-
-	ProposedDate string `json:"proposed_date"`
+	LogoUrl string `json:"logo_url,omitempty" yaml:"logo_url,omitempty"`
+	IconUrl string `json:"icon_url,omitempty" yaml:"icon_url,omitempty"`
 
 	// Computed fields
 	Name   string `json:"name,omitempty"`

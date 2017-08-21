@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"path"
 	"time"
 
 	"encoding/json"
@@ -13,7 +14,7 @@ import (
 	"github.com/google/go-github/github"
 
 	"github.com/cloudfoundry-incubator/cf-extensions/models"
-	"path"
+	"gopkg.in/yaml.v2"
 )
 
 type ExtRepos struct {
@@ -140,7 +141,12 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	info := models.Info{Repo: repo}
 	err = json.Unmarshal(fileBytes, &info)
 	if err != nil {
-		return models.Info{}, err
+		fmt.Printf("ERROR unmarshalling %s repo info as JSON, trying YAML\n", *repo.Name)
+		err = yaml.Unmarshal(fileBytes, &info)
+		if err != nil {
+			fmt.Printf("ERROR unmarshalling %s repo info as YAML, giving up\n", *repo.Name)
+			return models.Info{}, err
+		}
 	}
 	info.Update()
 
