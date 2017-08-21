@@ -46,7 +46,7 @@ Classified as a *Tool*, and uses commit style *Distributed*
 **Proposed Date**: 8/21/2017
 
 ### Description
-Helps manage CF-Extensions projects
+A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 ### Links
 
@@ -122,4 +122,4 @@ ADD DESCRIPTION HERE
 
 ---
 
-Last updated on 8/21/2017 @ 16:4:59.
+Last updated on 8/21/2017 @ 16:6:11.
