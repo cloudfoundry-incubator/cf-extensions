@@ -11,11 +11,7 @@
       "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-abacus",
-      "git_url": "git://github.com/cloudfoundry-incubator/cf-abacus.git",
-      "status": "Incubating",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00",
-      "category": "Service",
-      "commit_style": "Distributed"
+      "git_url": "git://github.com/cloudfoundry-incubator/cf-abacus.git"
     },
     {
       "owner_company": "IBM",
@@ -27,11 +23,7 @@
       "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-extensions",
-      "git_url": "git://github.com/cloudfoundry-incubator/cf-extensions.git",
-      "status": "Proposed",
-      "status_changed_date": "2017-17-07T12:00:00Z07:00",
-      "category": "Tool",
-      "commit_style": "Distributed"
+      "git_url": "git://github.com/cloudfoundry-incubator/cf-extensions.git"
     },
     {
       "owner_company": "IBM",
@@ -43,27 +35,7 @@
       "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-swagger",
-      "git_url": "git://github.com/cloudfoundry-incubator/cf-swagger.git",
-      "status": "Incubating",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00",
-      "category": "Tool",
-      "commit_style": "Distributed"
-    },
-    {
-      "owner_company": "IBM",
-      "contact_email": "contact@owner-company.com",
-      "description": "ADD DESCRIPTION HERE",
-      "tracker_url": "https://www.pivotaltracker.com",
-      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2017-08-15 11:13:30.088810194 -0700 PDT",
-      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
-      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
-      "name": "test",
-      "git_url": "git://github.com/cloudfoundry-incubator/test.git",
-      "status": "Unknown",
-      "status_changed_date": "2017-03-02T12:00:00Z07:00",
-      "category": "Tool",
-      "commit_style": "Distributed"
+      "git_url": "git://github.com/cloudfoundry-incubator/cf-swagger.git"
     }
   ]
 }

@@ -27,7 +27,7 @@ In order to be listed as a CF-Extensions project, instigators need to follow the
 1. Make their repos public.
 2. If the repo is not part of one of the the CFF’s supported organizations, then move it to `github.com/cloudfoundry-community`.
 3. Modify their GitHub topics list to include `cf-extensions`.
-4. Next time the cf-extensions bot runs it will submit an issue to your repo with instructions to create a `.cf-extensions` JSON metadata file and what values to include.
+4. Next time the cf-extensions bot runs it will submit an issue to your repo with instructions to create a `.cf-extensions` JSON or YAML metadata file and what values to include.
 
 Once you are ready to submit your proposal extension to the CF-Extensions PMC then follow these additional steps:
 
