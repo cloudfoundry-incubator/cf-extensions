@@ -19,17 +19,17 @@ var CATEGORIES = map[string]string{"bosh": "BOSH", "runtime": "Runtime", "apis":
 var COMMIT_STYLES = map[string]string{"pairing": "Pairing", "distributed": "Distributed"}
 
 type Status struct {
-	Status      string `json:"status,omitempty"`
-	ChangedDate string `json:"status_changed_date,omitempty"`
-	Category    string `json:"category,omitempty"`
-	CommitStyle string `json:"commit_style,omitempty"`
+	Status      string `json:"status,omitempty" yaml:"status,omitempty"`
+	ChangedDate string `json:"status_changed_date,omitempty" yaml:"status_changed_date,omitempty"`
+	Category    string `json:"category,omitempty" yaml:"category,omitempty"`
+	CommitStyle string `json:"commit_style,omitempty" yaml:"commit_style,omitempty"`
 }
 
 type Statistics struct {
-	ForksCount      int `json:"-"`
-	OpenIssuesCount int `json:"-"`
-	StargazersCount int `json:"-"`
-	WatchersCount   int `json:"-"`
+	ForksCount      int `json:"-" yaml:"-"`
+	OpenIssuesCount int `json:"-" yaml:"-"`
+	StargazersCount int `json:"-" yaml:"-"`
+	WatchersCount   int `json:"-" yaml:"-"`
 }
 
 type Info struct {
@@ -47,17 +47,17 @@ type Info struct {
 	IconUrl string `json:"icon_url,omitempty" yaml:"icon_url,omitempty"`
 
 	// Computed fields
-	Name   string `json:"name,omitempty"`
-	GitUrl string `json:"git_url,omitempty"`
+	Name   string `json:"name,omitempty" yaml:"name,omitempty"`
+	GitUrl string `json:"git_url,omitempty" yaml:"git_url,omitempty"`
 
-	Stats Statistics `json:"-"`
+	Stats Statistics `json:"-" yaml:"-"`
 
-	Repo              *github.Repository        `json:"-"`
-	LatestRepoRelease *github.RepositoryRelease `json:"-"`
+	Repo              *github.Repository        `json:"-" yaml:"-"`
+	LatestRepoRelease *github.RepositoryRelease `json:"-" yaml:"-"`
 
 	// Protected fields
 
-	Status
+	Status `json:"-" yaml:"-"`
 }
 
 // Infos methods

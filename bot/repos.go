@@ -134,17 +134,17 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	}
 
 	fileBytes, err := extractFileBytes(fileContents)
-	if err != nil {
+	if err != nil || string(fileBytes) == "" {
 		return models.Info{}, err
 	}
 
 	info := models.Info{Repo: repo}
 	err = json.Unmarshal(fileBytes, &info)
 	if err != nil {
-		fmt.Printf("ERROR unmarshalling %s repo info as JSON, trying YAML\n", *repo.Name)
+		fmt.Printf("ERROR unmarshalling `%s` repo info as JSON, trying YAML\n", *repo.Name)
 		err = yaml.Unmarshal(fileBytes, &info)
 		if err != nil {
-			fmt.Printf("ERROR unmarshalling %s repo info as YAML, giving up\n", *repo.Name)
+			fmt.Printf("ERROR unmarshalling `%s` repo info as YAML, giving up\n", *repo.Name)
 			return models.Info{}, err
 		}
 	}
@@ -156,13 +156,20 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Repository) (*github.Issue, error) {
 	infoJson, err := extRepos.extractInfoJson(info)
 	if err != nil {
-		fmt.Printf("Could not marshall info info string error: %v\n", err)
+		fmt.Printf("Could not marshall info into JSON string error: %v\n", err)
+		return nil, err
+	}
+
+	infoYaml, err := extRepos.extractInfoYaml(info)
+	if err != nil {
+		fmt.Printf("Could not marshall info into YAML string error: %v\n", err)
 		return nil, err
 	}
 
 	type IssueInfo struct {
 		Filename   string
 		InfoJson   string
+		InfoYaml   string
 		TrackerUrl string
 		LogoUrl    string
 		IconUrl    string
@@ -171,6 +178,7 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 	issueInfo := IssueInfo{
 		"`.cf-extensions`",
 		fmt.Sprintf("```json\n%s\n```", infoJson),
+		fmt.Sprintf("```yaml\n%s\n```", infoYaml),
 		"`tracker_url`",
 		"`logo_url`",
 		"`icon_url`",
@@ -316,6 +324,16 @@ func (extRepos *ExtRepos) extractInfoJson(info models.Info) (string, error) {
 	infoBytes, err := json.MarshalIndent(info, "", "  ")
 	if err != nil {
 		return "{}", err
+	}
+
+	return string(infoBytes), nil
+}
+
+func (extRepos *ExtRepos) extractInfoYaml(info models.Info) (string, error) {
+	info.Name, info.GitUrl, info.Repo = "", "", nil
+	infoBytes, err := yaml.Marshal(info)
+	if err != nil {
+		return "---", err
 	}
 
 	return string(infoBytes), nil
