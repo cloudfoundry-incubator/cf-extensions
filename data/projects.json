@@ -20,7 +20,7 @@
     {
       "owner_company": "IBM",
       "contact_email": "maxim@us.ibm.com",
-      "description": "Helps manage CF-Extensions projects",
+      "description": "A GitHub bot and hub that is used to help manage CF-Extensions projects",
       "tracker_url": "",
       "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
       "proposed_date": "2017-08-16T18:00:00.000Z",
