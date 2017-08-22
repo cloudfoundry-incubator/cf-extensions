@@ -3,18 +3,18 @@
 + Fix issue with parsing Info.*Date fields
 + Add `dep` support and commit current dependencies
 
++ Add some integration test
++ Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
+
++ Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
++ Create cf-extensions-bot GitHub user with access to all cloudfoundry orgs
+
 + Add check for Snyk security scanning and latest scan and note in project info and lists
 
 + Add links or preview to README.md of CF-Extensions process and template
 + add HTML anchors to generated pages
 + Update CF-Extensions project presentation for CAB call Wednesday 8/16 call and record
 + Add links to CAB August presentation and recording to README.md
-
-+ Add some integration test
-+ Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
-
-+ Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
-+ Create cf-extensions-bot GitHub user with access to all cloudfoundry orgs
 
 # Future
 
