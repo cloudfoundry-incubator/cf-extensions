@@ -2,11 +2,12 @@
 
 + Fix issue with parsing Info.*Date fields
 
-+ Add some integration test
 + Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
 
++ Add some integration test and basic CI
+
 + Look for CF-Extensions projects from cloudfoundry-incubator and other orgs (e.g., cloudfoundry-community, cloudfoundry, etc)
-+ Create cf-extensions-bot GitHub user with access to all cloudfoundry orgs
++ Create cf-extensions-bot GitHub user with access to all cloudfoundry orgs and switch to using that
 
 + Add check for Snyk security scanning and latest scan and note in project info and lists
 
