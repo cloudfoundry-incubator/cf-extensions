@@ -1,5 +1,7 @@
 # Working
 
++ Use go vet in build script
++ Update latest go-github and use Topics from new code instead of fork
 + Fix issue with parsing Info.*Date fields
 
 + Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB

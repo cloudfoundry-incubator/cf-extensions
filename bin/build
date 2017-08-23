@@ -4,7 +4,10 @@ set -e
 bin=$(dirname $0)
 
 echo -e "\nFormatting packages..."
-$bin/env go fmt ./...
+$bin/env go fmt $(go list ./... | grep -v /vendor/)
+
+echo -e "\nVetting packages..."
+$bin/env go vet $(go list ./... | grep -v /vendor/)
 
 echo -e "\nGenerating Binary... with $($bin/env go version)"
 $bin/env go build -o $(dirname $0)/../out/cf-extensions *.go

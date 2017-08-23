@@ -306,13 +306,13 @@ func print(org string, infos []models.Info) {
 
 	fmt.Println()
 	fmt.Printf("Repos for %s, total: %d\n", org, len(infos))
-	fmt.Println("-----------------\n")
+	fmt.Println("-----------------")
 	for _, info := range infos {
 		fmt.Printf("Repo name: %s, URL: %s\n", *info.Repo.Name, *info.Repo.GitURL)
 		fmt.Printf("Topics:     %s\n", *info.Repo.Topics)
 		fmt.Println()
 	}
-	fmt.Println("-----------------\n")
+	fmt.Println("-----------------")
 	fmt.Printf("Total repos: %d\n", len(infos))
 }
 
