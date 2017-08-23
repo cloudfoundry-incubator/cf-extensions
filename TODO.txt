@@ -1,7 +1,6 @@
 # Working
 
 + Fix issue with parsing Info.*Date fields
-+ Add `dep` support and commit current dependencies
 
 + Add some integration test
 + Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
@@ -50,3 +49,4 @@
 - Add category tag field to Info with specified defaults: BOSH, Runtime, APIs, CLI
 - Add commit_type field (pairing or distributed) to the Info of projects
 - Make the .cf-extensions metadata file format be either JSON or YML
+- Add `dep` support and commit current dependencies
