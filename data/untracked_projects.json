@@ -2,14 +2,12 @@
   "org": "cloudfoundry-incubator",
   "projects": [
     {
-      "owner_company": "IBM",
-      "contact_email": "maxim@owner-company.com",
-      "description": "Test",
+      "owner_company": "ADD OWNER COMPANY HERE",
+      "contact_email": "contact@owner-company.com",
+      "description": "ADD DESCRIPTION HERE",
       "tracker_url": "https://www.pivotaltracker.com",
       "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2017-08-21 16:34:38.444493352 -0700 PDT",
-      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
-      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
+      "proposed_date": "2017-08-24 15:17:06.277887315 -0700 PDT",
       "name": "test",
       "git_url": "git://github.com/cloudfoundry-incubator/test.git"
     }
