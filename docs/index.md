@@ -1,6 +1,6 @@
 # CF-Extensions
 
-**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 4 incubating projects
+**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 3 incubating projects
 
 ## [cf-abacus](git://github.com/cloudfoundry-incubator/cf-abacus.git)
 
@@ -83,31 +83,4 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ---
 
-## [test](git://github.com/cloudfoundry-incubator/test.git)
-
-**Stats**: Watchers (0) | Stars (0) | Forks (0) | Open issues (1)
-
-**Status**: *Unknown* (changed on 8/24/2017)
-
-**Lead**: IBM, maxim@owner-company.com
-
-**Proposed Date**: 8/24/2017
-
-### Description
-Test
-
-### Links
-
-**Proposal URL**: [https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing)
-
-**Git URL**: [git://github.com/cloudfoundry-incubator/test.git](git://github.com/cloudfoundry-incubator/test.git)
-
-**Tracker URL**: [https://www.pivotaltracker.com](https://www.pivotaltracker.com)
-
-
-
-**Latest Release**: _No release yet_
-
----
-
-Last updated on 8/24/2017 @ 14:51:55.
+Last updated on 8/24/2017 @ 14:54:5.
