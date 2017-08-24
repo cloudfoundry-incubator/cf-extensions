@@ -1,5 +1,10 @@
 # Working
 
++ Change owner_company to lead_company
++ Add lead_github_id to required info for projects (instead of contact, assuming I can get email from github ID)
+
++ Add slack_channel to optional info for projects
+
 + Use go vet in build script
 + Update latest go-github and use Topics from new code instead of fork
 + Fix issue with parsing Info.*Date fields
