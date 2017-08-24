@@ -18,15 +18,15 @@ bin=$(dirname $0)
   echo -e "\n Cleaning build artifacts..."
   $bin/env go clean
 
-  echo -e "\n Formatting packages..."
-  $bin/env go fmt ./...
+  echo -e "\nFormatting packages..."
+  $bin/env go fmt $(go list ./... | grep -v /vendor/)
+
+  echo -e "\nVetting packages..."
+  $bin/env go vet $(go list ./... | grep -v /vendor/)
 
   echo -e "\n Running unit tests..."
   $bin/env ginkgo -r $race -keepGoing -trace -skipPackage="integration" $@
 
   echo -e "\n Integration Testing packages:"
   $bin/env go test ./integration/... -parallel 4 $@
-
-  echo -e "\n Vetting packages for potential issues..."
-  $bin/env go tool vet main models bot
 )
