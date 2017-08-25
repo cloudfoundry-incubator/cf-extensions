@@ -2,7 +2,9 @@
 
 **Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 3 incubating projects
 
-## [cf-abacus](git://github.com/cloudfoundry-incubator/cf-abacus.git) ![Icon of cf-abacus](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
+
+
+## [cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus) ![Icon of cf-abacus](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
 Classified as a *Service*, and uses commit style *Distributed*
 
@@ -32,7 +34,7 @@ Metering engine for CloudFoundry
 
 ---
 
-## [cf-extensions](git://github.com/cloudfoundry-incubator/cf-extensions.git) ![Icon of cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
+## [cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions) ![Icon of cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
 Classified as a *Tool*, and uses commit style *Distributed*
 
@@ -62,7 +64,7 @@ A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 ---
 
-## [cf-swagger](git://github.com/cloudfoundry-incubator/cf-swagger.git) ![Icon of cf-swagger](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
+## [cf-swagger](https://github.com/cloudfoundry-incubator/cf-swagger) ![Icon of cf-swagger](https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png)
 
 Classified as a *Tool*, and uses commit style *Distributed*
 
@@ -92,4 +94,4 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ---
 
-Last updated on 8/25/2017 @ 11:14:56.
+Last updated on 8/25/2017 @ 11:48:4.
