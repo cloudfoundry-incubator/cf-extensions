@@ -2,7 +2,9 @@
 
 **Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 3 incubating projects
 
-## [cf-abacus](git://github.com/cloudfoundry-incubator/cf-abacus.git)
+
+
+## [cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
 
 **Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (62)
 
@@ -29,7 +31,7 @@ Metering engine for CloudFoundry
 
 ---
 
-## [cf-extensions](git://github.com/cloudfoundry-incubator/cf-extensions.git)
+## [cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions)
 
 **Stats**: Watchers (1) | Stars (1) | Forks (0) | Open issues (0)
 
@@ -56,7 +58,7 @@ A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 ---
 
-## [cf-swagger](git://github.com/cloudfoundry-incubator/cf-swagger.git)
+## [cf-swagger](https://github.com/cloudfoundry-incubator/cf-swagger)
 
 **Stats**: Watchers (20) | Stars (20) | Forks (8) | Open issues (2)
 
@@ -83,4 +85,4 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ---
 
-Last updated on 8/25/2017 @ 11:14:57.
+Last updated on 8/25/2017 @ 11:48:6.
