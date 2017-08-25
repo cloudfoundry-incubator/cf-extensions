@@ -2,9 +2,11 @@
 
 **Organization**: [{{.Org}}](https://github.com/{{.Org}}) has {{.Infos | Length}} incubating projects
 
+{{$org := .Org }}
+
 {{- range .Infos }}
 
-## [{{.Name}}](https://github.com/{{.Org}}/{{.Name}})
+## [{{.Name}}](https://github.com/{{$org}}/{{.Name}})
 
 **Stats**: Watchers ({{.Stats.WatchersCount}}) | Stars ({{.Stats.StargazersCount}}) | Forks ({{.Stats.ForksCount}}) | Open issues ({{.Stats.OpenIssuesCount}})
 
