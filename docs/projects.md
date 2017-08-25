@@ -7,13 +7,13 @@
 Classified as a *Service*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (63)
+**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (62)
 
-**Status**: *Incubating* (changed on 8/24/2017)
+**Status**: *Incubating* (changed on 8/25/2017)
 
 **Lead**: IBM, Michael Maximilien &lt;maxim@us.ibm.com&gt;
 
-**Proposed Date**: 8/24/2017
+**Proposed Date**: 8/25/2017
 
 ### Description
 Metering engine for CloudFoundry
@@ -39,11 +39,11 @@ Classified as a *Tool*, and uses commit style *Distributed*
 
 **Stats**: Watchers (1) | Stars (1) | Forks (0) | Open issues (0)
 
-**Status**: *Proposed* (changed on 8/24/2017)
+**Status**: *Proposed* (changed on 8/25/2017)
 
 **Lead**: IBM, maxim@us.ibm.com
 
-**Proposed Date**: 8/24/2017
+**Proposed Date**: 8/25/2017
 
 ### Description
 A GitHub bot and hub that is used to help manage CF-Extensions projects
@@ -69,11 +69,11 @@ Classified as a *Tool*, and uses commit style *Distributed*
 
 **Stats**: Watchers (20) | Stars (20) | Forks (8) | Open issues (2)
 
-**Status**: *Incubating* (changed on 8/24/2017)
+**Status**: *Incubating* (changed on 8/25/2017)
 
 **Lead**: IBM, Michael Maximilien &lt;maxim@us.ibm.com&gt;
 
-**Proposed Date**: 8/24/2017
+**Proposed Date**: 8/25/2017
 
 ### Description
 Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€™s APIs. 
@@ -92,4 +92,4 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ---
 
-Last updated on 8/24/2017 @ 15:17:9.
+Last updated on 8/25/2017 @ 11:14:56.
