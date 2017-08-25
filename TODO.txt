@@ -1,11 +1,9 @@
 # Working
 
-+ Change owner_company to lead_company
 + Add lead_github_id to required info for projects (instead of contact, assuming I can get email from github ID)
 
 + Add slack_channel to optional info for projects
 
-+ Use go vet in build script
 + Update latest go-github and use Topics from new code instead of fork
 + Fix issue with parsing Info.*Date fields
 
@@ -58,3 +56,5 @@
 - Add commit_type field (pairing or distributed) to the Info of projects
 - Make the .cf-extensions metadata file format be either JSON or YML
 - Add `dep` support and commit current dependencies
+- Use go vet in build script
+- Change owner_company to lead_company
