@@ -4,7 +4,7 @@
 
 {{- range .Infos }}
 
-## [{{.Name}}]({{.GitUrl}}) ![Icon of {{.Name}}]({{.IconUrl}})
+## [{{.Name}}](https://github.com/{{.Org}}/{{.Name}}) ![Icon of {{.Name}}]({{.IconUrl}})
 
 Classified as a *{{ .Category }}*, and uses commit style *{{ .CommitStyle }}*
 
@@ -13,7 +13,7 @@ Classified as a *{{ .Category }}*, and uses commit style *{{ .CommitStyle }}*
 
 **Status**: *{{ .Status.Status }}* (changed on {{ .ChangedDate | ParseAsDate }})
 
-**Lead**: {{ .OwnerCompany }}, {{ .ContactEmail }}
+**Lead**: {{ .LeadCompany }}, {{ .ContactEmail }}
 
 **Proposed Date**: {{ .ProposedDate | ParseAsDate }}
 

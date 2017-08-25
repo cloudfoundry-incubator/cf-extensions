@@ -20,7 +20,7 @@ var _ = Describe("Projects", func() {
 					GitUrl:      "info0.git.url",
 					TrackerUrl:  "info0.tracker.url",
 
-					OwnerCompany: "info0 Inc.",
+					LeadCompany:  "info0 Inc.",
 					ContactEmail: "info@info0.com",
 					ProposedDate: "",
 
@@ -32,7 +32,7 @@ var _ = Describe("Projects", func() {
 					GitUrl:      "info1.git.url",
 					TrackerUrl:  "info1.tracker.url",
 
-					OwnerCompany: "info1 Inc.",
+					LeadCompany:  "info1 Inc.",
 					ContactEmail: "info@info1.com",
 					ProposedDate: "",
 
@@ -50,7 +50,7 @@ var _ = Describe("Projects", func() {
 					GitUrl:      "info0.git.url",
 					TrackerUrl:  "info0.tracker.url",
 
-					OwnerCompany: "info0 Inc.",
+					LeadCompany:  "info0 Inc.",
 					ContactEmail: "info@info0.com",
 					ProposedDate: "",
 
@@ -62,7 +62,7 @@ var _ = Describe("Projects", func() {
 					GitUrl:      "info1.git.url",
 					TrackerUrl:  "info1.tracker.url",
 
-					OwnerCompany: "info1 Inc.",
+					LeadCompany:  "info1 Inc.",
 					ContactEmail: "info@info1.com",
 					ProposedDate: "",
 

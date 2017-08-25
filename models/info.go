@@ -34,7 +34,7 @@ type Statistics struct {
 
 type Info struct {
 	// Optionally provided by owner
-	OwnerCompany string `json:"owner_company" yaml:"owner_company"`
+	LeadCompany  string `json:"lead_company" yaml:"lead_company"`
 	ContactEmail string `json:"contact_email" yaml:"contact_email"`
 
 	Description string `json:"description" yaml:"description"`

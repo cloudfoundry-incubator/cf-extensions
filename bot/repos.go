@@ -62,7 +62,7 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 		Name:   *repo.Name,
 		GitUrl: *repo.GitURL,
 
-		OwnerCompany: "ADD OWNER COMPANY HERE",
+		LeadCompany:  "ADD OWNER COMPANY HERE",
 		ContactEmail: "contact@owner-company.com",
 
 		Description: "ADD DESCRIPTION HERE",
