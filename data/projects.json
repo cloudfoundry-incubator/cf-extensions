@@ -2,7 +2,7 @@
   "org": "cloudfoundry-incubator",
   "projects": [
     {
-      "owner_company": "IBM",
+      "lead_company": "IBM",
       "contact_email": "Michael Maximilien \u003cmaxim@us.ibm.com\u003e",
       "description": "Metering engine for CloudFoundry",
       "tracker_url": "https://www.pivotaltracker.com/n/projects/1385414",
@@ -14,7 +14,7 @@
       "git_url": "git://github.com/cloudfoundry-incubator/cf-abacus.git"
     },
     {
-      "owner_company": "IBM",
+      "lead_company": "IBM",
       "contact_email": "maxim@us.ibm.com",
       "description": "A GitHub bot and hub that is used to help manage CF-Extensions projects",
       "tracker_url": "",
@@ -26,7 +26,7 @@
       "git_url": "git://github.com/cloudfoundry-incubator/cf-extensions.git"
     },
     {
-      "owner_company": "IBM",
+      "lead_company": "IBM",
       "contact_email": "Michael Maximilien \u003cmaxim@us.ibm.com\u003e",
       "description": "Collection of Swagger (Open APIs) description of public CloudFoundry component’s APIs. ",
       "tracker_url": "",
