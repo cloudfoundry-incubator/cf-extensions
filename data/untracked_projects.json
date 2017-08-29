@@ -2,36 +2,12 @@
   "org": "cloudfoundry-incubator",
   "projects": [
     {
-      "lead_company": "Pivotal",
-      "contact_email": "djahner@pivotal.io",
-      "description": "CredHub centralizes and secures credential generation, storage, lifecycle management, and access.",
-      "tracker_url": "https://www.pivotaltracker.com/n/projects/1977341",
-      "proposal_url": "https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md",
-      "proposed_date": "2017-02-20T12:00:00.000Z",
-      "logo_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/logo.png",
-      "icon_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png",
-      "name": "credhub",
-      "git_url": "git://github.com/cloudfoundry-incubator/credhub.git"
-    },
-    {
-      "lead_company": "Pivotal",
-      "contact_email": "djahner@pivotal.io",
-      "description": "CredHub CLI provides a command line interface and go client for CredHub servers.",
-      "tracker_url": "https://www.pivotaltracker.com/n/projects/1977341",
-      "proposal_url": "https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md",
-      "proposed_date": "2017-02-20T12:00:00.000Z",
-      "logo_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/logo.png",
-      "icon_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png",
-      "name": "credhub-cli",
-      "git_url": "git://github.com/cloudfoundry-incubator/credhub-cli.git"
-    },
-    {
       "lead_company": "ADD LEAD COMPANY HERE",
       "contact_email": "contact@lead-company.com",
       "description": "ADD DESCRIPTION HERE",
       "tracker_url": "https://www.pivotaltracker.com",
       "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2017-08-29 15:03:10.490512576 -0700 PDT",
+      "proposed_date": "2017-08-29 15:08:37.278337086 -0700 PDT",
       "name": "test",
       "git_url": "git://github.com/cloudfoundry-incubator/test.git"
     }
