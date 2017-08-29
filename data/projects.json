@@ -36,6 +36,30 @@
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-swagger",
       "git_url": "git://github.com/cloudfoundry-incubator/cf-swagger.git"
+    },
+    {
+      "lead_company": "Pivotal",
+      "contact_email": "djahner@pivotal.io",
+      "description": "CredHub centralizes and secures credential generation, storage, lifecycle management, and access.",
+      "tracker_url": "https://www.pivotaltracker.com/n/projects/1977341",
+      "proposal_url": "https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md",
+      "proposed_date": "2017-02-20T12:00:00.000Z",
+      "logo_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/logo.png",
+      "icon_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png",
+      "name": "credhub",
+      "git_url": "git://github.com/cloudfoundry-incubator/credhub.git"
+    },
+    {
+      "lead_company": "Pivotal",
+      "contact_email": "djahner@pivotal.io",
+      "description": "CredHub CLI provides a command line interface and go client for CredHub servers.",
+      "tracker_url": "https://www.pivotaltracker.com/n/projects/1977341",
+      "proposal_url": "https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md",
+      "proposed_date": "2017-02-20T12:00:00.000Z",
+      "logo_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/logo.png",
+      "icon_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png",
+      "name": "credhub-cli",
+      "git_url": "git://github.com/cloudfoundry-incubator/credhub-cli.git"
     }
   ]
 }
