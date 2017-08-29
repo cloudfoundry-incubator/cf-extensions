@@ -57,3 +57,4 @@
 - Add `dep` support and commit current dependencies
 - Use go vet in build script
 - Change owner_company to lead_company
+- Use go-flags to parse command line options
