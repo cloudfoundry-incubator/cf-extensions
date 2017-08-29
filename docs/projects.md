@@ -1,6 +1,6 @@
 # CF-Extensions
 
-**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 3 incubating projects
+**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 5 incubating projects
 
 
 
@@ -94,4 +94,64 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ---
 
-Last updated on 8/29/2017 @ 15:3:13.
+## [credhub](https://github.com/cloudfoundry-incubator/credhub) ![Icon of credhub](https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png)
+
+Classified as a *Service*, and uses commit style *Pair*
+
+
+**Stats**: Watchers (44) | Stars (44) | Forks (8) | Open issues (2)
+
+**Status**: *Incubating* (changed on 8/29/2017)
+
+**Lead**: Pivotal, djahner@pivotal.io
+
+**Proposed Date**: 8/29/2017
+
+### Description
+CredHub centralizes and secures credential generation, storage, lifecycle management, and access.
+
+### Links
+
+**Proposal URL**: [https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md](https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md)
+
+**Git URL**: [git://github.com/cloudfoundry-incubator/credhub.git](git://github.com/cloudfoundry-incubator/credhub.git)
+
+**Tracker URL**: [https://www.pivotaltracker.com/n/projects/1977341](https://www.pivotaltracker.com/n/projects/1977341)
+
+
+
+**Latest Release**: _No release yet_
+
+---
+
+## [credhub-cli](https://github.com/cloudfoundry-incubator/credhub-cli) ![Icon of credhub-cli](https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png)
+
+Classified as a *Service*, and uses commit style *Pair*
+
+
+**Stats**: Watchers (5) | Stars (5) | Forks (2) | Open issues (4)
+
+**Status**: *Incubating* (changed on 8/29/2017)
+
+**Lead**: Pivotal, djahner@pivotal.io
+
+**Proposed Date**: 8/29/2017
+
+### Description
+CredHub CLI provides a command line interface and go client for CredHub servers.
+
+### Links
+
+**Proposal URL**: [https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md](https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md)
+
+**Git URL**: [git://github.com/cloudfoundry-incubator/credhub-cli.git](git://github.com/cloudfoundry-incubator/credhub-cli.git)
+
+**Tracker URL**: [https://www.pivotaltracker.com/n/projects/1977341](https://www.pivotaltracker.com/n/projects/1977341)
+
+**Latest Release**: [1.4.1](https://api.github.com/repos/cloudfoundry-incubator/credhub-cli/tarball/1.4.1)
+
+
+
+---
+
+Last updated on 8/29/2017 @ 15:8:39.
