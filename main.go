@@ -3,11 +3,14 @@ package main
 import (
 	"fmt"
 	"os"
+	"sync"
 
 	"encoding/json"
 	"io/ioutil"
+	"os/signal"
 
 	"github.com/jessevdk/go-flags"
+	"github.com/robfig/cron"
 
 	"github.com/cloudfoundry-incubator/cf-extensions/bot"
 )
@@ -35,6 +38,7 @@ type Options struct {
 	Verbose    bool   `short:"v" long:"verbose" description:"Show verbose debug information"`
 	File       string `short:"f" long:"file" description:"The credential file"`
 	Credential string `short:"c" long:"credentials" description:"The credentials string in JSON"`
+	Schedule   string `short:"s" long:"schedule" description:"The schedule for when to run app in cron format, e.g., '@every 12h'"`
 }
 
 func main() {
@@ -66,7 +70,20 @@ func main() {
 	}
 
 	app := bot.NewApp(credentials.AccessToken, credentials.Username, credentials.Email)
-	app.Run(credentials.Orgs[0], credentials.TopicFilters)
+	if opts.Schedule == "" {
+		app.Run(credentials.Orgs[0], credentials.TopicFilters)
+	} else {
+		cronJob := cron.New()
+		//cronJob.AddFunc(opts.Schedule, func() { app.Run(credentials.Orgs[0], credentials.TopicFilters) })
+		cronJob.AddFunc(opts.Schedule, func() { fmt.Println("===> running") }) //DEBUG
+
+		fmt.Printf("Running as per cron schedule: `%s`\n", opts.Schedule)
+		cronJob.Start()
+	}
+
+	fmt.Printf("Press Ctrl+C to end\n")
+	waitForCtrlC()
+	fmt.Println()
 }
 
 func parseCredentialsFile(filePath string) (Credentials, error) {
@@ -86,4 +103,22 @@ func parseCredentials(credentialJson string) (Credentials, error) {
 	}
 
 	return credentials, nil
+}
+
+func waitForCtrlC() {
+	var end_waiter sync.WaitGroup
+
+	end_waiter.Add(1)
+
+	var signal_channel chan os.Signal
+
+	signal_channel = make(chan os.Signal, 1)
+	signal.Notify(signal_channel, os.Interrupt)
+
+	go func() {
+		<-signal_channel
+		end_waiter.Done()
+	}()
+
+	end_waiter.Wait()
 }
