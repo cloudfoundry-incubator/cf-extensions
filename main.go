@@ -74,8 +74,7 @@ func main() {
 		app.Run(credentials.Orgs[0], credentials.TopicFilters)
 	} else {
 		cronJob := cron.New()
-		//cronJob.AddFunc(opts.Schedule, func() { app.Run(credentials.Orgs[0], credentials.TopicFilters) })
-		cronJob.AddFunc(opts.Schedule, func() { fmt.Println("===> running") }) //DEBUG
+		cronJob.AddFunc(opts.Schedule, func() { app.Run(credentials.Orgs[0], credentials.TopicFilters) })
 
 		fmt.Printf("Running as per cron schedule: `%s`\n", opts.Schedule)
 		cronJob.Start()

@@ -6,6 +6,7 @@ import (
 	"os"
 	"path"
 	"sort"
+	"time"
 
 	"encoding/json"
 	"html/template"
@@ -40,6 +41,9 @@ func NewApp(accessToken, username, email string) *App {
 }
 
 func (app *App) Run(org string, topics []string) {
+	fmt.Printf("Finding CF-Extensions projects in org: `%s` using topics: `%s`\n", org, topics)
+	fmt.Printf("Current time: `%s`\n", time.Now().String())
+
 	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
 	trackedInfos, untrackedInfos := app.ExtRepos.GetInfos()
 
@@ -67,6 +71,7 @@ func (app *App) Run(org string, topics []string) {
 
 	print(app.ExtRepos.Org, trackedInfos)
 
+	fmt.Println("Done.")
 }
 
 func (app *App) GenerateMarkdowns(projects models.Projects) error {
