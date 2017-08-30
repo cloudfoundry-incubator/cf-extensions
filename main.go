@@ -78,11 +78,11 @@ func main() {
 
 		fmt.Printf("Running as per cron schedule: `%s`\n", opts.Schedule)
 		cronJob.Start()
-	}
 
-	fmt.Printf("Press Ctrl+C to end\n")
-	waitForCtrlC()
-	fmt.Println()
+		fmt.Printf("Press Ctrl+C to end\n")
+		waitForCtrlC()
+		fmt.Println()
+	}
 }
 
 func parseCredentialsFile(filePath string) (Credentials, error) {
