@@ -2,7 +2,6 @@ package bot
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"path"
 	"sort"
@@ -41,8 +40,8 @@ func NewApp(accessToken, username, email string) *App {
 }
 
 func (app *App) Run(org string, topics []string) {
-	fmt.Printf("Finding CF-Extensions projects in org: `%s` using topics: `%s`\n", org, topics)
-	fmt.Printf("Current time: `%s`\n", time.Now().String())
+	Printf("Finding CF-Extensions projects in org: `%s` using topics: `%s`\n", org, topics)
+	Printf("Current time: `%s`\n", time.Now().String())
 
 	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
 	trackedInfos, untrackedInfos := app.ExtRepos.GetInfos()
@@ -54,24 +53,24 @@ func (app *App) Run(org string, topics []string) {
 	projects := models.Projects{Org: app.ExtRepos.Org, Infos: trackedInfos}
 	err := app.PushProjectsJsonDb(projects, projectsPath)
 	if err != nil {
-		fmt.Printf("ERROR: saving / pushing `%s` file: %s\n", projectsPath, err.Error())
+		Printf("ERROR: saving / pushing `%s` file: %s\n", projectsPath, err.Error())
 	}
 
 	untrackedProjectsPath := path.Join("data", "untracked_projects.json")
 	untrackedProjects := models.Projects{Org: app.ExtRepos.Org, Infos: untrackedInfos}
 	err = app.PushProjectsJsonDb(untrackedProjects, untrackedProjectsPath)
 	if err != nil {
-		fmt.Printf("ERROR: saving / pushing `%s` file: %s\n", untrackedProjectsPath, err.Error())
+		Printf("ERROR: saving / pushing `%s` file: %s\n", untrackedProjectsPath, err.Error())
 	}
 
 	err = app.GenerateMarkdowns(projects)
 	if err != nil {
-		fmt.Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
+		Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
 	}
 
 	print(app.ExtRepos.Org, trackedInfos)
 
-	fmt.Println("Done.")
+	Println("Done.")
 }
 
 func (app *App) GenerateMarkdowns(projects models.Projects) error {
@@ -100,7 +99,7 @@ func (app *App) GenerateProjectsMarkdown(projects models.Projects) error {
 	}
 
 	if !hasProjectsChanged(projects, fileContents) {
-		fmt.Printf("Commited projects.md has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		Printf("Commited projects.md has not changed, last commit SHA: %s\n", *fileContents.SHA)
 		return nil
 	}
 
@@ -162,11 +161,11 @@ func (app *App) GenerateProjectsMarkdown(projects models.Projects) error {
 		"docs/projects.md",
 		repositoryContentsOptions)
 	if err != nil {
-		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
+		Printf("Repositories.UpdateFile returned error: %v", err)
 		return err
 	}
 
-	fmt.Printf("Commited projects.md %s\n", *updateResponse.Commit.SHA)
+	Printf("Commited projects.md %s\n", *updateResponse.Commit.SHA)
 
 	return nil
 }
@@ -183,7 +182,7 @@ func (app *App) GenerateIndexMarkdown(projects models.Projects) error {
 	}
 
 	if !hasProjectsChanged(projects, fileContents) {
-		fmt.Printf("Commited projects.md has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		Printf("Commited projects.md has not changed, last commit SHA: %s\n", *fileContents.SHA)
 		return nil
 	}
 
@@ -244,11 +243,11 @@ func (app *App) GenerateIndexMarkdown(projects models.Projects) error {
 		"docs/index.md",
 		repositoryContentsOptions)
 	if err != nil {
-		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
+		Printf("Repositories.UpdateFile returned error: %v", err)
 		return err
 	}
 
-	fmt.Printf("Commited index.md %s\n", *updateResponse.Commit.SHA)
+	Printf("Commited index.md %s\n", *updateResponse.Commit.SHA)
 
 	return nil
 }
@@ -265,7 +264,7 @@ func (app *App) PushProjectsJsonDb(projects models.Projects, filePath string) er
 	}
 
 	if !hasProjectsChanged(projects, fileContents) {
-		fmt.Printf("Commited projects.json has not changed, last commit SHA: %s\n", *fileContents.SHA)
+		Printf("Commited projects.json has not changed, last commit SHA: %s\n", *fileContents.SHA)
 		return nil
 	}
 
@@ -295,11 +294,11 @@ func (app *App) PushProjectsJsonDb(projects models.Projects, filePath string) er
 		filePath,
 		repositoryContentsOptions)
 	if err != nil {
-		fmt.Printf("Repositories.UpdateFile returned error: %v", err)
+		Printf("Repositories.UpdateFile returned error: %v", err)
 		return err
 	}
 
-	fmt.Printf("Commited `%s` %s\n", filePath, *updateResponse.Commit.SHA)
+	Printf("Commited `%s` %s\n", filePath, *updateResponse.Commit.SHA)
 
 	return nil
 }
@@ -309,16 +308,16 @@ func (app *App) PushProjectsJsonDb(projects models.Projects, filePath string) er
 func print(org string, infos []models.Info) {
 	sort.Sort(models.Infos(infos))
 
-	fmt.Println()
-	fmt.Printf("Repos for %s, total: %d\n", org, len(infos))
-	fmt.Println("-----------------")
+	Println()
+	Printf("Repos for %s, total: %d\n", org, len(infos))
+	Println("-----------------")
 	for _, info := range infos {
-		fmt.Printf("Repo name: %s, URL: %s\n", *info.Repo.Name, *info.Repo.GitURL)
-		fmt.Printf("Topics:     %s\n", *info.Repo.Topics)
-		fmt.Println()
+		Printf("Repo name: %s, URL: %s\n", *info.Repo.Name, *info.Repo.GitURL)
+		Printf("Topics:     %s\n", *info.Repo.Topics)
+		Println()
 	}
-	fmt.Println("-----------------")
-	fmt.Printf("Total repos: %d\n", len(infos))
+	Println("-----------------")
+	Printf("Total repos: %d\n", len(infos))
 }
 
 func hasProjectsChanged(projects models.Projects, fileContent *github.RepositoryContent) bool {

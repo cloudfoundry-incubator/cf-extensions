@@ -14,33 +14,7 @@ import (
 	"github.com/cloudfoundry-incubator/cf-extensions/models"
 )
 
-// Private
-
-func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
-	response, err := http.Get(*fileContent.DownloadURL)
-	if err != nil {
-		return []byte{}, err
-	}
-
-	tmpFile, err := ioutil.TempFile(os.TempDir(), "ExtRepos")
-	defer os.Remove(tmpFile.Name())
-	if err != nil {
-		return []byte{}, err
-	}
-
-	defer response.Body.Close()
-	_, err = io.Copy(tmpFile, response.Body)
-	if err != nil {
-		return []byte{}, err
-	}
-
-	fileBytes, err := ioutil.ReadFile(tmpFile.Name())
-	if err != nil {
-		return []byte{}, err
-	}
-
-	return fileBytes, nil
-}
+var VERBOSE = false
 
 // Public
 
@@ -67,9 +41,53 @@ func FormatAsDateTime(t time.Time) string {
 func ParseAsDate(timeString string) string {
 	stringTime, err := time.Parse("2017-02-03T12:00:00Z07:00", timeString)
 	if err != nil {
-		fmt.Printf("ERROR parsing time: %s, message: %s\n", timeString, err.Error())
+		Printf("ERROR parsing time: %s, message: %s\n", timeString, err.Error())
 		return FormatAsDate(time.Now())
 	}
 
 	return FormatAsDate(stringTime)
+}
+
+func Println(args ...interface{}) (int, error) {
+	if VERBOSE {
+		return fmt.Println(args...)
+	}
+
+	return 0, nil
+}
+
+func Printf(format string, args ...interface{}) (int, error) {
+	if VERBOSE {
+		return fmt.Printf(format, args...)
+	}
+
+	return 0, nil
+}
+
+// Private
+
+func extractFileBytes(fileContent *github.RepositoryContent) ([]byte, error) {
+	response, err := http.Get(*fileContent.DownloadURL)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "ExtRepos")
+	defer os.Remove(tmpFile.Name())
+	if err != nil {
+		return []byte{}, err
+	}
+
+	defer response.Body.Close()
+	_, err = io.Copy(tmpFile, response.Body)
+	if err != nil {
+		return []byte{}, err
+	}
+
+	fileBytes, err := ioutil.ReadFile(tmpFile.Name())
+	if err != nil {
+		return []byte{}, err
+	}
+
+	return fileBytes, nil
 }

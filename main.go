@@ -51,21 +51,23 @@ func main() {
 		os.Exit(1)
 	}
 
+	bot.VERBOSE = opts.Verbose
+
 	credentials := Credentials{}
 	if opts.File != "" {
 		credentials, err = parseCredentialsFile(opts.File)
 		if err != nil {
-			fmt.Printf("Error parsing credentials from file: %s, message: %s\n", opts.File, err.Error())
+			bot.Printf("Error parsing credentials from file: %s, message: %s\n", opts.File, err.Error())
 			os.Exit(1)
 		}
 	} else if opts.Credential != "" {
 		credentials, err = parseCredentials(opts.Credential)
 		if err != nil {
-			fmt.Printf("Error parsing credentials from JSON:\n `%s`\n   Message: %s\n", opts.Credential, err.Error())
+			bot.Printf("Error parsing credentials from JSON:\n `%s`\n   Message: %s\n", opts.Credential, err.Error())
 			os.Exit(1)
 		}
 	} else {
-		fmt.Println("No credentials passed")
+		bot.Println("No credentials passed")
 		os.Exit(1)
 	}
 
@@ -76,7 +78,7 @@ func main() {
 		cronJob := cron.New()
 		cronJob.AddFunc(opts.Schedule, func() { app.Run(credentials.Orgs[0], credentials.TopicFilters) })
 
-		fmt.Printf("Running as per cron schedule: `%s`\n", opts.Schedule)
+		bot.Printf("Running as per cron schedule: `%s`\n", opts.Schedule)
 		cronJob.Start()
 
 		fmt.Printf("Press Ctrl+C to end\n")

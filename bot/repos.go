@@ -90,23 +90,23 @@ func (extRepos *ExtRepos) FetchInfos(repos []*github.Repository, projectsStatus 
 			if !extRepos.InfoIssueExists(info) {
 				issue, err := extRepos.CreateInfoIssue(info, r)
 				if err != nil {
-					fmt.Printf("ERROR creating default info issue in repo: %s, message: %s\n", info.Name, err.Error())
+					Printf("ERROR creating default info issue in repo: %s, message: %s\n", info.Name, err.Error())
 				}
-				fmt.Printf("Created default info issue #%d in repo: %s\n", *issue.Number, info.Name)
+				Printf("Created default info issue #%d in repo: %s\n", *issue.Number, info.Name)
 			} else {
-				fmt.Printf("Info issue already exists in %s\n", info.Name)
+				Printf("Info issue already exists in %s\n", info.Name)
 			}
 		} else {
 			latestRepoRelease, err := extRepos.FetchLatestRepoRelease(r)
 			if err != nil {
-				fmt.Printf("Error getting latest release for repo: %s\n", info.Name)
+				Printf("Error getting latest release for repo: %s\n", info.Name)
 			} else {
 				info.LatestRepoRelease = latestRepoRelease
 			}
 			info.AddDefaults()
 			status, err := projectsStatus.StatusForName(info.Name)
 			if err != nil {
-				fmt.Printf("Error could not find status for `%s` adding to untracked projects\n", info.Name)
+				Printf("Error could not find status for `%s` adding to untracked projects\n", info.Name)
 				untrackedInfos = append(untrackedInfos, info)
 			} else {
 				info.Status = status
@@ -141,10 +141,10 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	info := models.Info{Repo: repo}
 	err = json.Unmarshal(fileBytes, &info)
 	if err != nil {
-		fmt.Printf("ERROR unmarshalling `%s` repo info as JSON, trying YAML\n", *repo.Name)
+		Printf("ERROR unmarshalling `%s` repo info as JSON, trying YAML\n", *repo.Name)
 		err = yaml.Unmarshal(fileBytes, &info)
 		if err != nil {
-			fmt.Printf("ERROR unmarshalling `%s` repo info as YAML, giving up\n", *repo.Name)
+			Printf("ERROR unmarshalling `%s` repo info as YAML, giving up\n", *repo.Name)
 			return models.Info{}, err
 		}
 	}
@@ -156,13 +156,13 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Repository) (*github.Issue, error) {
 	infoJson, err := extRepos.extractInfoJson(info)
 	if err != nil {
-		fmt.Printf("Could not marshall info into JSON string error: %v\n", err)
+		Printf("Could not marshall info into JSON string error: %v\n", err)
 		return nil, err
 	}
 
 	infoYaml, err := extRepos.extractInfoYaml(info)
 	if err != nil {
-		fmt.Printf("Could not marshall info into YAML string error: %v\n", err)
+		Printf("Could not marshall info into YAML string error: %v\n", err)
 		return nil, err
 	}
 
@@ -196,7 +196,7 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 
 	issueInfoTemplate, err := template.New("issue-info").Parse(string(issueInfoTmplBytes))
 	if err != nil {
-		fmt.Printf("Could not create issue info error: %v\n", err)
+		Printf("Could not create issue info error: %v\n", err)
 		return nil, err
 	}
 
@@ -223,7 +223,7 @@ func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Reposit
 
 	issue, _, err := extRepos.Client.Issues.Create(context.Background(), extRepos.Org, info.Name, &issueRequest)
 	if err != nil {
-		fmt.Printf("Issues.Create returned error: %v\n", err)
+		Printf("Issues.Create returned error: %v\n", err)
 		return nil, err
 	}
 
@@ -240,7 +240,7 @@ func (extRepos *ExtRepos) InfoIssueExists(info models.Info) bool {
 	for {
 		issues, resp, err := extRepos.Client.Issues.ListByRepo(context.Background(), extRepos.Org, info.Name, &issueListByRepoOpts)
 		if err != nil {
-			fmt.Printf("Issues.List returned error: %v\n", err)
+			Printf("Issues.List returned error: %v\n", err)
 			return false
 		}
 
@@ -272,7 +272,7 @@ func (extRepos *ExtRepos) getRepos() []*github.Repository {
 			extRepos.Org,
 			orgOpts)
 		if err != nil {
-			fmt.Printf("err: %s", err.Error())
+			Printf("err: %s", err.Error())
 			os.Exit(1)
 		}
 
@@ -299,20 +299,20 @@ func (extRepos *ExtRepos) extractProjectsStatus() models.ProjectsStatus {
 	fileContents, _, _, err := extRepos.Client.Repositories.GetContents(context.Background(),
 		extRepos.Org, "cf-extensions", projectsStatusPath, &github.RepositoryContentGetOptions{})
 	if err != nil {
-		fmt.Printf("Error fetching `%s` with projects status\n", projectsStatusPath)
+		Printf("Error fetching `%s` with projects status\n", projectsStatusPath)
 		return models.ProjectsStatus{}
 	}
 
 	fileBytes, err := extractFileBytes(fileContents)
 	if err != nil {
-		fmt.Printf("Error reading `%s` with projects status\n", projectsStatusPath)
+		Printf("Error reading `%s` with projects status\n", projectsStatusPath)
 		return models.ProjectsStatus{}
 	}
 
 	projectsStatus := models.ProjectsStatus{}
 	err = json.Unmarshal(fileBytes, &projectsStatus)
 	if err != nil {
-		fmt.Printf("Error unmarshalling projects status, message: %s\n", err.Error())
+		Printf("Error unmarshalling projects status, message: %s\n", err.Error())
 		return models.ProjectsStatus{}
 	}
 
