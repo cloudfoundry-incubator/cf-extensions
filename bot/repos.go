@@ -70,7 +70,7 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 		ProposalUrl: models.PROPOSAL_DEFAULT_URL,
 		TrackerUrl:  models.TRACKER_DEFAULT_URL,
 
-		ProposedDate: time.Now().String(),
+		ProposedDate: time.Now().Format(time.RFC3339),
 
 		Repo: repo,
 	}
