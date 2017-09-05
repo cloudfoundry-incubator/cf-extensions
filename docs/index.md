@@ -6,13 +6,13 @@
 
 ## [cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
 
-**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (63)
+**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (62)
 
-**Status**: *Incubating* (changed on 8/31/2017)
+**Status**: *Incubating* (changed on 9/5/2017)
 
 **Lead**: IBM, Michael Maximilien &lt;maxim@us.ibm.com&gt;
 
-**Proposed Date**: 8/31/2017
+**Proposed Date**: 9/5/2017
 
 ### Description
 Metering engine for CloudFoundry
@@ -35,11 +35,11 @@ Metering engine for CloudFoundry
 
 **Stats**: Watchers (1) | Stars (1) | Forks (0) | Open issues (1)
 
-**Status**: *Proposed* (changed on 8/31/2017)
+**Status**: *Proposed* (changed on 9/5/2017)
 
 **Lead**: IBM, maxim@us.ibm.com
 
-**Proposed Date**: 8/31/2017
+**Proposed Date**: 9/5/2017
 
 ### Description
 A GitHub bot and hub that is used to help manage CF-Extensions projects
@@ -62,11 +62,11 @@ A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 **Stats**: Watchers (20) | Stars (20) | Forks (8) | Open issues (2)
 
-**Status**: *Incubating* (changed on 8/31/2017)
+**Status**: *Incubating* (changed on 9/5/2017)
 
 **Lead**: IBM, Michael Maximilien &lt;maxim@us.ibm.com&gt;
 
-**Proposed Date**: 8/31/2017
+**Proposed Date**: 9/5/2017
 
 ### Description
 Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€™s APIs. 
@@ -89,11 +89,11 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 **Stats**: Watchers (44) | Stars (44) | Forks (8) | Open issues (2)
 
-**Status**: *Incubating* (changed on 8/31/2017)
+**Status**: *Incubating* (changed on 9/5/2017)
 
 **Lead**: Pivotal, djahner@pivotal.io
 
-**Proposed Date**: 8/31/2017
+**Proposed Date**: 9/5/2017
 
 ### Description
 CredHub centralizes and secures credential generation, storage, lifecycle management, and access.
@@ -116,11 +116,11 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 
 **Stats**: Watchers (5) | Stars (5) | Forks (2) | Open issues (4)
 
-**Status**: *Incubating* (changed on 8/31/2017)
+**Status**: *Incubating* (changed on 9/5/2017)
 
 **Lead**: Pivotal, djahner@pivotal.io
 
-**Proposed Date**: 8/31/2017
+**Proposed Date**: 9/5/2017
 
 ### Description
 CredHub CLI provides a command line interface and go client for CredHub servers.
@@ -139,4 +139,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 8/31/2017 @ 13:6:16.
+Last updated on 9/5/2017 @ 12:23:28.
