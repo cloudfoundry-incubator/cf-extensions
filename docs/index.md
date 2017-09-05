@@ -33,13 +33,13 @@ Metering engine for CloudFoundry
 
 ## [cf-extensions](https://github.com/cloudfoundry-incubator/cf-extensions)
 
-**Stats**: Watchers (1) | Stars (1) | Forks (0) | Open issues (1)
+**Stats**: Watchers (2) | Stars (2) | Forks (0) | Open issues (1)
 
 **Status**: *Proposed* (changed on 9/5/2017)
 
 **Lead**: IBM, maxim@us.ibm.com
 
-**Proposed Date**: 9/5/2017
+**Proposed Date**: 8/16/2017
 
 ### Description
 A GitHub bot and hub that is used to help manage CF-Extensions projects
@@ -93,7 +93,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 **Lead**: Pivotal, djahner@pivotal.io
 
-**Proposed Date**: 9/5/2017
+**Proposed Date**: 2/20/2017
 
 ### Description
 CredHub centralizes and secures credential generation, storage, lifecycle management, and access.
@@ -120,7 +120,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 
 **Lead**: Pivotal, djahner@pivotal.io
 
-**Proposed Date**: 9/5/2017
+**Proposed Date**: 2/20/2017
 
 ### Description
 CredHub CLI provides a command line interface and go client for CredHub servers.
@@ -139,4 +139,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 9/5/2017 @ 12:23:28.
+Last updated on 9/5/2017 @ 14:59:18.
