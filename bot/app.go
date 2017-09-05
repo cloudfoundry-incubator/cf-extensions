@@ -41,7 +41,7 @@ func NewApp(accessToken, username, email string) *App {
 
 func (app *App) Run(org string, topics []string) {
 	Printf("Finding CF-Extensions projects in org: `%s` using topics: `%s`\n", org, topics)
-	Printf("Current time: `%s`\n", time.Now().String())
+	Printf("Current time: `%s`\n", time.Now().Format(time.RFC3339))
 
 	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
 	trackedInfos, untrackedInfos := app.ExtRepos.GetInfos()

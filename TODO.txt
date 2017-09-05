@@ -4,7 +4,6 @@
 + Add slack_channel to optional info for projects
 
 + Update latest go-github and use Topics from new code instead of fork
-+ Fix issue with parsing Info.*Date fields
 
 + Add some integration test and basic CI
 
@@ -58,3 +57,4 @@
 - Use go-flags to parse command line options
 - Create CF app to periodically run cf-extensions project to update all CF-Extensions projects and resulting projects.json DB
 - Implement Verbose option so that only necessary info is shown in output and all others only when verbost is on
+- Fix issue with parsing Info.*Date fields
