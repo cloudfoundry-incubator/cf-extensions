@@ -44,7 +44,6 @@ func (app *App) Run(org string, topics []string) {
 	Printf("Current time: `%s`\n", time.Now().Format(time.RFC3339))
 	Println()
 
-
 	Println()
 	Printf("1. Searching for all CF-Extensions projects in `%s`\n", org)
 	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
@@ -78,8 +77,11 @@ func (app *App) Run(org string, topics []string) {
 		Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
 	}
 
+	Println()
+	Println("5. Summary")
 	print(app.ExtRepos.Org, trackedInfos)
 
+	Println()
 	Println("Done.")
 }
 
@@ -318,7 +320,6 @@ func (app *App) PushProjectsJsonDb(projects models.Projects, filePath string) er
 func print(org string, infos []models.Info) {
 	sort.Sort(models.Infos(infos))
 
-	Println()
 	Printf("Repos for %s, total: %d\n", org, len(infos))
 	Println("-----------------")
 	for _, info := range infos {
