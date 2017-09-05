@@ -11,7 +11,7 @@
     {
       "name": "cf-extensions",
       "status": "Proposed",
-      "status_changed_date": "2017-17-07T12:00:00Z07:00",
+      "status_changed_date": "2017-07-17T12:00:00Z07:00",
       "category": "Tool",
       "commit_style": "Distributed"
     },
