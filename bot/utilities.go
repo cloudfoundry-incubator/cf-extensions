@@ -39,7 +39,7 @@ func FormatAsDateTime(t time.Time) string {
 }
 
 func ParseAsDate(timeString string) string {
-	stringTime, err := time.Parse("2017-02-03T12:00:00Z07:00", timeString)
+	stringTime, err := time.Parse(time.RFC3339, timeString)
 	if err != nil {
 		Printf("ERROR parsing time: %s, message: %s\n", timeString, err.Error())
 		return FormatAsDate(time.Now())
