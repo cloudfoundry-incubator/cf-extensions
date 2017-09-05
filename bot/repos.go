@@ -141,7 +141,7 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 	info := models.Info{Repo: repo}
 	err = json.Unmarshal(fileBytes, &info)
 	if err != nil {
-		Printf("ERROR unmarshalling `%s` repo info as JSON, trying YAML\n", *repo.Name)
+		Printf("Could not unmarshal `%s` repo info as JSON, trying YAML\n", *repo.Name)
 		err = yaml.Unmarshal(fileBytes, &info)
 		if err != nil {
 			Printf("ERROR unmarshalling `%s` repo info as YAML, giving up\n", *repo.Name)
