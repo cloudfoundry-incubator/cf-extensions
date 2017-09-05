@@ -42,7 +42,11 @@ func NewApp(accessToken, username, email string) *App {
 func (app *App) Run(org string, topics []string) {
 	Printf("Finding CF-Extensions projects in org: `%s` using topics: `%s`\n", org, topics)
 	Printf("Current time: `%s`\n", time.Now().Format(time.RFC3339))
+	Println()
 
+
+	Println()
+	Printf("1. Searching for all CF-Extensions projects in `%s`\n", org)
 	app.ExtRepos = NewExtRepos(app.Username, org, topics, app.Client)
 	trackedInfos, untrackedInfos := app.ExtRepos.GetInfos()
 
@@ -50,7 +54,7 @@ func (app *App) Run(org string, topics []string) {
 	sort.Sort(models.Infos(untrackedInfos))
 
 	Println()
-	Println("Generating tracked projects data")
+	Println("2. Generating tracked projects data")
 	projectsPath := path.Join("data", "projects.json")
 	projects := models.Projects{Org: app.ExtRepos.Org, Infos: trackedInfos}
 	err := app.PushProjectsJsonDb(projects, projectsPath)
@@ -59,7 +63,7 @@ func (app *App) Run(org string, topics []string) {
 	}
 
 	Println()
-	Println("Generating untracked projects data")
+	Println("3. Generating untracked projects data")
 	untrackedProjectsPath := path.Join("data", "untracked_projects.json")
 	untrackedProjects := models.Projects{Org: app.ExtRepos.Org, Infos: untrackedInfos}
 	err = app.PushProjectsJsonDb(untrackedProjects, untrackedProjectsPath)
@@ -68,7 +72,7 @@ func (app *App) Run(org string, topics []string) {
 	}
 
 	Println()
-	Println("Generating tracked projects docs")
+	Println("4. Generating tracked projects docs")
 	err = app.GenerateMarkdowns(projects)
 	if err != nil {
 		Printf("ERROR: generating markdown file for projects: %s\n", err.Error())
