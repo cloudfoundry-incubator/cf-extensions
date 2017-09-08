@@ -67,6 +67,8 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 
 		Description: "ADD DESCRIPTION HERE",
 
+		SlackChannel: "#slack-channel-here",
+
 		ProposalUrl: models.PROPOSAL_DEFAULT_URL,
 		TrackerUrl:  models.TRACKER_DEFAULT_URL,
 

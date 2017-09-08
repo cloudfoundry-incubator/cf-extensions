@@ -39,6 +39,8 @@ type Info struct {
 
 	Description string `json:"description" yaml:"description"`
 
+	SlackChannel string `json:"slack_channel" yaml:"slack_channel"`
+
 	TrackerUrl   string `json:"tracker_url" yaml:"tracker_url"`
 	ProposalUrl  string `json:"proposal_url" yaml:"proposal_url"`
 	ProposedDate string `json:"proposed_date" yaml:"proposed_date"`
