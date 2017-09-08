@@ -10,7 +10,7 @@
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
-**Lead**: IBM, Michael Maximilien &lt;maxim@us.ibm.com&gt;
+**Lead**: IBM and SAP, Michael Maximilien &lt;maxim@us.ibm.com&gt;
 
 **Proposed Date**: 7/14/2015
 
@@ -19,7 +19,7 @@ Metering engine for CloudFoundry
 
 ### Links
 
-**Slack Channel**: [](https://cloudfoundry.slack.com/messages/)
+**Slack Channel**: [#cf-abacus](https://cloudfoundry.slack.com/messages/#cf-abacus)
 
 **Proposal URL**: [https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing)
 
@@ -48,7 +48,7 @@ A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 ### Links
 
-**Slack Channel**: [](https://cloudfoundry.slack.com/messages/)
+**Slack Channel**: [#cf-extensions](https://cloudfoundry.slack.com/messages/#cf-extensions)
 
 **Proposal URL**: [https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing)
 
@@ -77,7 +77,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ### Links
 
-**Slack Channel**: [](https://cloudfoundry.slack.com/messages/)
+**Slack Channel**: [#cf-swagger](https://cloudfoundry.slack.com/messages/#cf-swagger)
 
 **Proposal URL**: [https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing](https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing)
 
@@ -149,4 +149,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 9/8/2017 @ 15:2:32.
+Last updated on 9/8/2017 @ 15:8:42.
