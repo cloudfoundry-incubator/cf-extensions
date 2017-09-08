@@ -67,8 +67,6 @@ func (extRepos *ExtRepos) DefaultInfo(repo *github.Repository) models.Info {
 
 		Description: "ADD DESCRIPTION HERE",
 
-		SlackChannel: "#slack-channel-here",
-
 		ProposalUrl: models.PROPOSAL_DEFAULT_URL,
 		TrackerUrl:  models.TRACKER_DEFAULT_URL,
 
@@ -156,6 +154,7 @@ func (extRepos *ExtRepos) FetchInfo(repo *github.Repository) (models.Info, error
 }
 
 func (extRepos *ExtRepos) CreateInfoIssue(info models.Info, repo *github.Repository) (*github.Issue, error) {
+	info.SlackChannel = "#add-slack-channel-here"
 	infoJson, err := extRepos.extractInfoJson(info)
 	if err != nil {
 		Printf("Could not marshall info into JSON string error: %v\n", err)

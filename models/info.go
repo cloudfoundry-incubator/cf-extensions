@@ -3,6 +3,7 @@ package models
 import (
 	"time"
 
+	"fmt"
 	"github.com/google/go-github/github"
 )
 
@@ -121,6 +122,10 @@ func (info *Info) updateFromRepo() {
 
 	info.Name = *(info.Repo).Name
 	info.GitUrl = *(info.Repo).GitURL
+
+	if info.SlackChannel == "" {
+		info.SlackChannel = fmt.Sprintf("#%s", info.Name)
+	}
 
 	info.Stats = Statistics{
 		ForksCount:      *(info.Repo).ForksCount,
