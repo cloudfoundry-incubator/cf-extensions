@@ -11,6 +11,7 @@
       "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-abacus",
+      "slack_channel": "#cf-abacus",
       "git_url": "git://github.com/cloudfoundry-incubator/cf-abacus.git"
     },
     {
@@ -23,6 +24,7 @@
       "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-extensions",
+      "slack_channel": "#cf-extensions",
       "git_url": "git://github.com/cloudfoundry-incubator/cf-extensions.git"
     },
     {
@@ -35,6 +37,7 @@
       "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
       "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
       "name": "cf-swagger",
+      "slack_channel": "#cf-swagger",
       "git_url": "git://github.com/cloudfoundry-incubator/cf-swagger.git"
     },
     {
@@ -47,6 +50,7 @@
       "logo_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/logo.png",
       "icon_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png",
       "name": "credhub",
+      "slack_channel": "#credhub",
       "git_url": "git://github.com/cloudfoundry-incubator/credhub.git"
     },
     {
@@ -59,6 +63,7 @@
       "logo_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/logo.png",
       "icon_url": "https://raw.githubusercontent.com/cloudfoundry-incubator/credhub/master/docs/images/icon.png",
       "name": "credhub-cli",
+      "slack_channel": "#credhub",
       "git_url": "git://github.com/cloudfoundry-incubator/credhub-cli.git"
     }
   ]
