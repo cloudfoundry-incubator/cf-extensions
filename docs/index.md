@@ -106,7 +106,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 
 ### Links
 
-**Slack Channel**: [#credhub](https://cloudfoundry.slack.com/messages/#credhub)
+**Slack Channel**: [](https://cloudfoundry.slack.com/messages/)
 
 **Proposal URL**: [https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md](https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md)
 
@@ -135,7 +135,7 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ### Links
 
-**Slack Channel**: [#credhub-cli](https://cloudfoundry.slack.com/messages/#credhub-cli)
+**Slack Channel**: [](https://cloudfoundry.slack.com/messages/)
 
 **Proposal URL**: [https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md](https://github.com/cloudfoundry-incubator/credhub/blob/master/docs/product-summary.md)
 
@@ -149,4 +149,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 9/8/2017 @ 15:14:51.
+Last updated on 9/9/2017 @ 3:10:18.
