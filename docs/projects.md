@@ -9,7 +9,7 @@
 Classified as a *Service*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (64)
+**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (66)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 9/12/2017 @ 3:10:18.
+Last updated on 9/12/2017 @ 15:10:17.
