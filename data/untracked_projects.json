@@ -8,7 +8,7 @@
       "slack_channel": "#slack-channel-here",
       "tracker_url": "https://www.pivotaltracker.com",
       "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2017-09-13T15:10:14-07:00",
+      "proposed_date": "2017-09-14T03:10:15-07:00",
       "name": "test",
       "git_url": "git://github.com/cloudfoundry-incubator/test.git"
     }
