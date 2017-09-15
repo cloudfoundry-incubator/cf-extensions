@@ -6,7 +6,7 @@
 
 ## [cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
 
-**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (61)
+**Stats**: Watchers (62) | Stars (62) | Forks (68) | Open issues (60)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -149,4 +149,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 9/15/2017 @ 3:10:18.
+Last updated on 9/15/2017 @ 15:10:19.
