@@ -9,7 +9,7 @@
 Classified as a *Service*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (62) | Stars (62) | Forks (70) | Open issues (59)
+**Stats**: Watchers (62) | Stars (62) | Forks (70) | Open issues (60)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -41,7 +41,7 @@ Metering engine for CloudFoundry
 Classified as a *Tool*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (3) | Stars (3) | Forks (0) | Open issues (1)
+**Stats**: Watchers (3) | Stars (3) | Forks (0) | Open issues (2)
 
 **Status**: *Proposed* (changed on 7/17/2017)
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 9/29/2017 @ 1:43:23.
+Last updated on 9/29/2017 @ 21:43:23.
