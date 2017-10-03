@@ -122,7 +122,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 
 ## [credhub-cli](https://github.com/cloudfoundry-incubator/credhub-cli)
 
-**Stats**: Watchers (5) | Stars (5) | Forks (2) | Open issues (4)
+**Stats**: Watchers (5) | Stars (5) | Forks (3) | Open issues (4)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -149,4 +149,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 10/2/2017 @ 9:43:25.
+Last updated on 10/3/2017 @ 5:43:34.
