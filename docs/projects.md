@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 10/6/2017 @ 22:16:35.
+Last updated on 10/7/2017 @ 18:16:35.
