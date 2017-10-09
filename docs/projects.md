@@ -9,7 +9,7 @@
 Classified as a *Service*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (62) | Stars (62) | Forks (73) | Open issues (59)
+**Stats**: Watchers (62) | Stars (62) | Forks (73) | Open issues (60)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -137,7 +137,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 Classified as a *Service*, and uses commit style *Pair*
 
 
-**Stats**: Watchers (5) | Stars (5) | Forks (4) | Open issues (5)
+**Stats**: Watchers (5) | Stars (5) | Forks (6) | Open issues (7)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 10/8/2017 @ 14:16:35.
+Last updated on 10/9/2017 @ 10:16:35.
