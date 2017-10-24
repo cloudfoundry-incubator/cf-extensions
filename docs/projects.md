@@ -105,7 +105,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 Classified as a *Service*, and uses commit style *Pair*
 
 
-**Stats**: Watchers (50) | Stars (50) | Forks (8) | Open issues (3)
+**Stats**: Watchers (51) | Stars (51) | Forks (8) | Open issues (3)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -137,7 +137,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 Classified as a *Service*, and uses commit style *Pair*
 
 
-**Stats**: Watchers (5) | Stars (5) | Forks (6) | Open issues (5)
+**Stats**: Watchers (5) | Stars (5) | Forks (7) | Open issues (5)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 10/23/2017 @ 14:16:36.
+Last updated on 10/24/2017 @ 10:16:35.
