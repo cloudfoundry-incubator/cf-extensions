@@ -137,7 +137,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 Classified as a *Service*, and uses commit style *Pair*
 
 
-**Stats**: Watchers (7) | Stars (7) | Forks (10) | Open issues (9)
+**Stats**: Watchers (7) | Stars (7) | Forks (10) | Open issues (7)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 11/16/2017 @ 17:16:34.
+Last updated on 11/17/2017 @ 13:16:35.
