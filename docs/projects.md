@@ -30,7 +30,7 @@ Metering engine for CloudFoundry
 
 **Tracker URL**: [https://www.pivotaltracker.com/n/projects/1385414](https://www.pivotaltracker.com/n/projects/1385414)
 
-**Latest Release**: [v1.0.0](https://api.github.com/repos/cloudfoundry-incubator/cf-abacus/tarball/v1.0.0)
+**Latest Release**: [v0.0.5](https://api.github.com/repos/cloudfoundry-incubator/cf-abacus/tarball/v0.0.5)
 
 
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 11/27/2017 @ 12:6:31.
+Last updated on 11/28/2017 @ 8:6:33.
