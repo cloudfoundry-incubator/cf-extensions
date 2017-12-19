@@ -6,7 +6,7 @@
 
 ## [cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
 
-**Stats**: Watchers (67) | Stars (67) | Forks (76) | Open issues (61)
+**Stats**: Watchers (67) | Stars (67) | Forks (76) | Open issues (63)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -122,7 +122,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 
 ## [credhub-cli](https://github.com/cloudfoundry-incubator/credhub-cli)
 
-**Stats**: Watchers (8) | Stars (8) | Forks (10) | Open issues (10)
+**Stats**: Watchers (8) | Stars (8) | Forks (10) | Open issues (11)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -149,4 +149,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 12/17/2017 @ 17:37:54.
+Last updated on 12/19/2017 @ 5:37:54.
