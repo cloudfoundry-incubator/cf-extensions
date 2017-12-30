@@ -9,7 +9,7 @@
 Classified as a *Service*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (67) | Stars (67) | Forks (76) | Open issues (62)
+**Stats**: Watchers (67) | Stars (67) | Forks (76) | Open issues (63)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -137,7 +137,7 @@ CredHub centralizes and secures credential generation, storage, lifecycle manage
 Classified as a *Service*, and uses commit style *Pair*
 
 
-**Stats**: Watchers (8) | Stars (8) | Forks (11) | Open issues (11)
+**Stats**: Watchers (8) | Stars (8) | Forks (11) | Open issues (9)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -158,10 +158,10 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 **Tracker URL**: [https://www.pivotaltracker.com/n/projects/1977341](https://www.pivotaltracker.com/n/projects/1977341)
 
-**Latest Release**: [1.5.2](https://api.github.com/repos/cloudfoundry-incubator/credhub-cli/tarball/1.5.2)
+**Latest Release**: [1.5.3](https://api.github.com/repos/cloudfoundry-incubator/credhub-cli/tarball/1.5.3)
 
 
 
 ---
 
-Last updated on 12/28/2017 @ 5:37:53.
+Last updated on 12/29/2017 @ 17:37:53.
