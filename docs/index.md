@@ -6,7 +6,7 @@
 
 ## [cf-abacus](https://github.com/cloudfoundry-incubator/cf-abacus)
 
-**Stats**: Watchers (67) | Stars (67) | Forks (76) | Open issues (61)
+**Stats**: Watchers (67) | Stars (67) | Forks (76) | Open issues (62)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -64,7 +64,7 @@ A GitHub bot and hub that is used to help manage CF-Extensions projects
 
 ## [cf-swagger](https://github.com/cloudfoundry-incubator/cf-swagger)
 
-**Stats**: Watchers (20) | Stars (20) | Forks (8) | Open issues (2)
+**Stats**: Watchers (20) | Stars (20) | Forks (9) | Open issues (2)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -93,7 +93,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ## [credhub](https://github.com/cloudfoundry-incubator/credhub)
 
-**Stats**: Watchers (61) | Stars (61) | Forks (12) | Open issues (6)
+**Stats**: Watchers (61) | Stars (61) | Forks (12) | Open issues (7)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -149,4 +149,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 1/9/2018 @ 5:37:54.
+Last updated on 1/10/2018 @ 17:37:54.
