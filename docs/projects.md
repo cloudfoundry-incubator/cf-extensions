@@ -9,7 +9,7 @@
 Classified as a *Service*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (67) | Stars (67) | Forks (77) | Open issues (61)
+**Stats**: Watchers (67) | Stars (67) | Forks (77) | Open issues (60)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -73,7 +73,7 @@ A GitHub bot and hub that is used to help manage CF-Extensions projects
 Classified as a *Tool*, and uses commit style *Distributed*
 
 
-**Stats**: Watchers (20) | Stars (20) | Forks (9) | Open issues (2)
+**Stats**: Watchers (21) | Stars (21) | Forks (9) | Open issues (2)
 
 **Status**: *Incubating* (changed on 3/2/2017)
 
@@ -105,7 +105,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 Classified as a *Service*, and uses commit style *Pair*
 
 
-**Stats**: Watchers (61) | Stars (61) | Forks (12) | Open issues (7)
+**Stats**: Watchers (63) | Stars (63) | Forks (12) | Open issues (7)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -164,4 +164,4 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 1/16/2018 @ 17:37:53.
+Last updated on 1/18/2018 @ 5:37:53.
