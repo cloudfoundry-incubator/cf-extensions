@@ -5,10 +5,21 @@
       "lead_company": "ADD LEAD COMPANY HERE",
       "contact_email": "contact@lead-company.com",
       "description": "ADD DESCRIPTION HERE",
+      "slack_channel": "#stratos",
+      "tracker_url": "https://www.pivotaltracker.com",
+      "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
+      "proposed_date": "2018-01-19T17:37:49-08:00",
+      "name": "stratos",
+      "git_url": "git://github.com/cloudfoundry-incubator/stratos.git"
+    },
+    {
+      "lead_company": "ADD LEAD COMPANY HERE",
+      "contact_email": "contact@lead-company.com",
+      "description": "ADD DESCRIPTION HERE",
       "slack_channel": "#test",
       "tracker_url": "https://www.pivotaltracker.com",
       "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2018-01-18T05:37:51-08:00",
+      "proposed_date": "2018-01-19T17:37:51-08:00",
       "name": "test",
       "git_url": "git://github.com/cloudfoundry-incubator/test.git"
     }
