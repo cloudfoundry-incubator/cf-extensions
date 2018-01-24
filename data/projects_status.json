@@ -35,6 +35,13 @@
       "status_changed_date": "2017-02-19T12:00:00Z",
       "category": "Service",
       "commit_style": "Pair"
+    },
+    {
+      "name": "stratos",
+      "status": "Incubating",
+      "status_changed_date": "2018-01-15T12:00:00Z",
+      "category": "UI",
+      "commit_style": "Distributed"
     }
   ]
 }
