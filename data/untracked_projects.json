@@ -2,26 +2,13 @@
   "org": "cloudfoundry-incubator",
   "projects": [
     {
-      "lead_company": "SUSE",
-      "contact_email": "neil.macdougall@suse.com",
-      "description": "Stratos - Console UI for Cloud Foundry",
-      "slack_channel": "#stratos",
-      "tracker_url": "https://app.zenhub.com/workspace/o/cloudfoundry-incubator/stratos",
-      "proposal_url": "https://docs.google.com/document/d/1GgizNSutb3Lku1TshD333-7Dc_6fpKU9Wdi7XloKuK4",
-      "proposed_date": "2017-12-19T11:15:00",
-      "logo_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-logo.png",
-      "icon_url": "https://github.com/cloudfoundry-incubator/cf-extensions/blob/master/docs/images/cf-extensions-proposal-icon.png",
-      "name": "stratos",
-      "git_url": "git://github.com/cloudfoundry-incubator/stratos.git"
-    },
-    {
       "lead_company": "ADD LEAD COMPANY HERE",
       "contact_email": "contact@lead-company.com",
       "description": "ADD DESCRIPTION HERE",
       "slack_channel": "#test",
       "tracker_url": "https://www.pivotaltracker.com",
       "proposal_url": "https://docs.google.com/document/d/1cpyBmds7WYNLKO1qkjhCdS8bNSJjWH5MqTE-h1UCQkQ/edit?usp=sharing",
-      "proposed_date": "2018-01-24T05:37:51-08:00",
+      "proposed_date": "2018-01-25T17:37:51-08:00",
       "name": "test",
       "git_url": "git://github.com/cloudfoundry-incubator/test.git"
     }
