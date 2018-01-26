@@ -1,6 +1,6 @@
 # CF-Extensions
 
-**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 5 incubating projects
+**Organization**: [cloudfoundry-incubator](https://github.com/cloudfoundry-incubator) has 6 incubating projects
 
 
 
@@ -93,7 +93,7 @@ Collection of Swagger (Open APIs) description of public CloudFoundry componentâ€
 
 ## [credhub](https://github.com/cloudfoundry-incubator/credhub)
 
-**Stats**: Watchers (63) | Stars (63) | Forks (12) | Open issues (7)
+**Stats**: Watchers (63) | Stars (63) | Forks (13) | Open issues (7)
 
 **Status**: *Incubating* (changed on 2/19/2017)
 
@@ -149,4 +149,33 @@ CredHub CLI provides a command line interface and go client for CredHub servers.
 
 ---
 
-Last updated on 1/24/2018 @ 5:37:55.
+## [stratos](https://github.com/cloudfoundry-incubator/stratos)
+
+**Stats**: Watchers (50) | Stars (50) | Forks (16) | Open issues (27)
+
+**Status**: *Incubating* (changed on 1/15/2018)
+
+**Lead**: SUSE, neil.macdougall@suse.com
+
+**Proposed Date**: 1/25/2018
+
+### Description
+Stratos - Console UI for Cloud Foundry
+
+### Links
+
+**Slack Channel**: [#stratos](https://cloudfoundry.slack.com/messages/#stratos)
+
+**Proposal URL**: [https://docs.google.com/document/d/1GgizNSutb3Lku1TshD333-7Dc_6fpKU9Wdi7XloKuK4](https://docs.google.com/document/d/1GgizNSutb3Lku1TshD333-7Dc_6fpKU9Wdi7XloKuK4)
+
+**Git URL**: [git://github.com/cloudfoundry-incubator/stratos.git](git://github.com/cloudfoundry-incubator/stratos.git)
+
+**Tracker URL**: [https://app.zenhub.com/workspace/o/cloudfoundry-incubator/stratos](https://app.zenhub.com/workspace/o/cloudfoundry-incubator/stratos)
+
+**Latest Release**: [1.0.0](https://api.github.com/repos/cloudfoundry-incubator/stratos/tarball/1.0.0)
+
+
+
+---
+
+Last updated on 1/25/2018 @ 17:37:54.
